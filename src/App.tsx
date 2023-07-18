@@ -1,26 +1,28 @@
-import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import Header from "./components/Header/Header";
+import Navbar from "./components/Navbar/Navbar";
+import Profile from "./components/Profile/Profile";
+import {Route, Routes} from "react-router-dom";
+import News from "./components/News/News";
+import React from "react";
+import DialogsContainer from "./components/Dialogs/DialogsContainer";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+
+const App: React.FC<{/* store: StoreType,*/  }> = ({ /*store*/ }) => {
+    /*const state = store.getState();*/
+    return (
+        <div className="app-wrapper">
+            <Header />
+            <Navbar/>
+            <div className="app-booker-content">
+                <Routes>
+                    <Route path="dialogs/*" element={<DialogsContainer/>} />
+                    <Route path="profile/*" element={<Profile />} />
+                    <Route path="news/*" element={<News />} />
+                </Routes>
+            </div>
+        </div>
+    );
+};
 
 export default App;
