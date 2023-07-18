@@ -19,6 +19,7 @@ const App: React.FC<{/* store: StoreType,*/  }> = ({ /*store*/ }) => {
                     <Route path="dialogs/*" element={<DialogsContainer/>} />
                     <Route path="profile/*" element={<Profile />} />
                     <Route path="news/*" element={<News />} />
+                    <Route path="users/*" element={<div>users</div>} />
                 </Routes>
             </div>
         </div>
