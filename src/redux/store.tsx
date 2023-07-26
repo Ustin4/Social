@@ -1,8 +1,10 @@
 import profileReducer, {ActionPostTypes} from "./profile-reducer";
 import dialogsReducer, {ActionMessagesTypes} from "./dialogs-reducer";
 import sidebarReducer from "./sidebar-reducer";
+import {ActionFollowTypes} from "./users-reducer";
 
 
+/*
 export type PostType = {
     id: number;
     message: string;
@@ -53,9 +55,10 @@ export type StoreType = {
     dispatch: (action: ActionTypes) => void
 }
 
-export type ActionTypes = ActionPostTypes | ActionMessagesTypes
+export type ActionTypes = ActionPostTypes | ActionMessagesTypes | ActionFollowTypes
 
-
+*/
+/*
 let store: StoreType = {
     _state: {
         profilePage: {
@@ -107,6 +110,6 @@ let store: StoreType = {
     }
 }
 
-export default store
+export default store*/
 
 //window.store = store

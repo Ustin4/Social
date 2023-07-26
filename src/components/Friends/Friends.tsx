@@ -1,6 +1,7 @@
 import React from "react";
 import s from "./Friends.module.css";
-import {FriendType, SitebarType} from "../../redux/store";
+import {SitebarType} from "../../redux/redux-store";
+
 
 type PropsType = {
     sidebar: SitebarType;

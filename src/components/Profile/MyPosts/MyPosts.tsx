@@ -1,7 +1,8 @@
 import React, {RefObject} from "react";
 import s from "./MyPosts.module.css";
 import Post from "./Post/Post";
-import {PostType,} from "../../../redux/store";
+import {PostType} from "../../../redux/redux-store";
+
 
 type PropsType = {
     posts: Array<PostType>;

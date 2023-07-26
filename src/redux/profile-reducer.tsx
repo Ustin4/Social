@@ -1,4 +1,5 @@
-import {ActionTypes, PostType} from "./store";
+import {ActionTypes, PostType} from "./redux-store";
+
 
 let initialState = {
     posts: [

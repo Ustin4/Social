@@ -1,8 +1,9 @@
 import React from "react";
-import {StateType} from "../../redux/store";
+
 import {addMessagesActionCreator, updateNewMessagesTextActionCreator} from "../../redux/dialogs-reducer";
 import Dialogs from "./Dialogs";
 import {connect} from "react-redux";
+import {StateType} from "../../redux/redux-store";
 
 /*
 

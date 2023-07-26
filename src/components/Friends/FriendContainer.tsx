@@ -1,7 +1,8 @@
 import React from "react";
-import {StateType} from "../../redux/store";
+
 import {connect} from "react-redux";
 import Friends from "./Friends";
+import {StateType} from "../../redux/redux-store";
 
 /*
 

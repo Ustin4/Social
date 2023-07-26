@@ -1,9 +1,10 @@
 import React from "react";
-import {StateType,} from "../../../redux/store";
+
 import {addPostActionCreator, updateNewPostTextActionCreator} from "../../../redux/profile-reducer";
 import MyPosts from "./MyPosts";
 
 import {connect} from "react-redux";
+import {StateType} from "../../../redux/redux-store";
 
 /*type PropsType = {
     store: StoreType

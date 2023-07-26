@@ -1,11 +1,7 @@
 import React from "react";
 import s from './Navbar.module.css'
-import Friends from "../Friends/Friends";
-import {SitebarType, StateType} from "../../redux/store";
-import { NavLink } from "react-router-dom";
-import {addMessagesActionCreator, updateNewMessagesTextActionCreator} from "../../redux/dialogs-reducer";
-import {connect} from "react-redux";
-import Dialogs from "../Dialogs/Dialogs";
+
+import {NavLink} from "react-router-dom";
 import FriendContainer from "../Friends/FriendContainer";
 /*
 type PropsType = {
@@ -31,6 +27,15 @@ const Navbar: React.FC<any> = ({sidebar}) => {
                         navData.isActive ? s.active : `${s.item}`
                     }>
                     Messages
+                </NavLink>
+            </div>
+            <div>
+                <NavLink
+                    to="/Users"
+                    className={(navData) =>
+                        navData.isActive ? s.active : `${s.item}`
+                    }>
+                    Users
                 </NavLink>
             </div>
             <div>

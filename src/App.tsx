@@ -6,6 +6,7 @@ import {Route, Routes} from "react-router-dom";
 import News from "./components/News/News";
 import React from "react";
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
+import UsersContainer from "./components/Users/UsersContainer";
 
 
 const App: React.FC<{/* store: StoreType,*/  }> = ({ /*store*/ }) => {
@@ -19,7 +20,7 @@ const App: React.FC<{/* store: StoreType,*/  }> = ({ /*store*/ }) => {
                     <Route path="dialogs/*" element={<DialogsContainer/>} />
                     <Route path="profile/*" element={<Profile />} />
                     <Route path="news/*" element={<News />} />
-                    <Route path="users/*" element={<div>users</div>} />
+                    <Route path="users/*" element={<UsersContainer/>} />
                 </Routes>
             </div>
         </div>
