@@ -28,8 +28,14 @@ export type FriendType = {
 }
 
 export type ProfilePageType = {
+    contacts: any;
+    photos: {
+        small: string | null;
+        large: string | null;
+    };
     posts: Array<PostType>;
     newPostText: string;
+    profile:string
 }
 
 export type DialogsPageType = {

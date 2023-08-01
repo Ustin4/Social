@@ -23,13 +23,15 @@ export type InitialStateType = {
     pageSize: number
     totalUsersCount: number
     currentPage: number
+    isFetching: boolean
 }
 
 const initialState: InitialStateType = {
     users: [],
-    pageSize: 5,
+    pageSize: 30,
     totalUsersCount: 0,
     currentPage: 1,
+    isFetching: false
 };
 const usersReducer = (state = initialState, action: ActionTypes) => {
     switch (action.type) {
@@ -60,8 +62,11 @@ const usersReducer = (state = initialState, action: ActionTypes) => {
         case "SET_CURRENT_PAGE": {
             return {...state, currentPage: action.currentPage}
         }
-        case "SET_TOTAL_USERS_COUNT":{
-            return {...state,totalUsersCount:action.totalCount}
+        case "SET_TOTAL_USERS_COUNT": {
+            return {...state, totalUsersCount: action.totalCount}
+        }
+        case "TOGGLE_IS_FETCHING": {
+            return {...state, isFetching: action.isFetching}
         }
         default:
             return state
@@ -71,20 +76,23 @@ const usersReducer = (state = initialState, action: ActionTypes) => {
 
 
 export type ActionFollowTypes =
-    ReturnType<typeof followAC>
-    | ReturnType<typeof unFollowAC>
-    | ReturnType<typeof setUsersAC>
-    | ReturnType<typeof setCurrentPageAC>
-    | ReturnType<typeof setTotalUsersCountAC>
+    ReturnType<typeof follow>
+    | ReturnType<typeof unFollow>
+    | ReturnType<typeof setUsers>
+    | ReturnType<typeof setCurrentPage>
+    | ReturnType<typeof setTotalUsersCount>
+    | ReturnType<typeof toggleIsFetching>
 
 
-export const followAC = (userId: number) => ({type: 'FOLLOW', userId} as const);
+export const follow = (userId: number) => ({type: 'FOLLOW', userId} as const);
 
-export const unFollowAC = (userId: number) => ({type: "UNFOLLOW", userId} as const);
+export const unFollow = (userId: number) => ({type: "UNFOLLOW", userId} as const);
 
-export const setUsersAC = (users: any) => ({type: "SET_USERS", users} as const);
+export const setUsers = (users: any) => ({type: "SET_USERS", users} as const);
 
-export const setCurrentPageAC = (currentPage: number) => ({type: 'SET_CURRENT_PAGE', currentPage} as const);
-export const setTotalUsersCountAC = (totalCount: number) => ({type: 'SET_TOTAL_USERS_COUNT', totalCount} as const);
+export const setCurrentPage = (currentPage: number) => ({type: 'SET_CURRENT_PAGE', currentPage} as const);
+export const setTotalUsersCount = (totalCount: number) => ({type: 'SET_TOTAL_USERS_COUNT', totalCount} as const);
+
+export const toggleIsFetching = (isFetching: boolean) => ({type: 'TOGGLE_IS_FETCHING', isFetching} as const);
 
 export default usersReducer

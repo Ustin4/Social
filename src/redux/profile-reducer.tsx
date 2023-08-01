@@ -1,4 +1,4 @@
-import {ActionTypes, PostType} from "./redux-store";
+import {ActionTypes, PostType, ProfilePageType} from "./redux-store";
 
 
 let initialState = {
@@ -6,12 +6,13 @@ let initialState = {
         {id: 1, message: 'hi how are you?', likesCount: 12},
         {id: 2, message: 'hi how', likesCount: 11},
     ],
-    newPostText: 'hi'
+    newPostText: 'hi',
+    profile: null
 }
 
 const profileReducer = (state = initialState, action: ActionTypes) => {
     switch (action.type) {
-        case "ADD-POST":
+        case "ADD-POST": {
             let newPost: PostType = {
                 id: 3,
                 message: state.newPostText,
@@ -19,14 +20,24 @@ const profileReducer = (state = initialState, action: ActionTypes) => {
             }
             return {
                 ...state,
-                posts :[...state.posts,newPost],
-                newPostText :''
+                posts: [...state.posts, newPost],
+                newPostText: ''
             }
-        case "UPDATE-NEW-POST-TEXT":
-            return{
+        }
+
+        case "UPDATE-NEW-POST-TEXT": {
+            return {
                 ...state,
-                newPostText : action.newText
+                newPostText: action.newText
             }
+        }
+
+        case "SET_USER_PROFILE": {
+            return {
+                ...state ,profile:action.profile
+            }
+        }
+
         default:
             return state
     }
@@ -37,11 +48,13 @@ const profileReducer = (state = initialState, action: ActionTypes) => {
 export type ActionPostTypes =
     ReturnType<typeof addPostActionCreator>
     | ReturnType<typeof updateNewPostTextActionCreator>
-
+    | ReturnType<typeof setUserProfile>
 
 export const addPostActionCreator = () => ({type: 'ADD-POST'} as const);
 
 export const updateNewPostTextActionCreator = (text: string) =>
     ({type: "UPDATE-NEW-POST-TEXT", newText: text} as const);
+export const setUserProfile = (profile: ProfilePageType) =>
+    ({type: "SET_USER_PROFILE", profile} as const);
 
 export default profileReducer
