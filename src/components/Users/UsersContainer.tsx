@@ -25,7 +25,7 @@ export type UsersAPIComponentPropsType = {
     setCurrentPage: (currentPage: number) => void
     setTotalUsersCount: (totalCount: number) => void
     // onPageChanged: (pageNumber: number) => void
-}
+} 
 class UsersContainer extends React.Component<UsersAPIComponentPropsType, UsersAPIComponentPropsType> {
 
     componentDidMount() {
