@@ -1,4 +1,5 @@
 import {ActionTypes} from "./redux-store";
+import {a} from "../1";
 
 export type UserLocationType = {
     city: string;
@@ -24,6 +25,7 @@ export type InitialStateType = {
     totalUsersCount: number
     currentPage: number
     isFetching: boolean
+    followingInProgress: boolean
 }
 
 const initialState: InitialStateType = {
@@ -31,7 +33,8 @@ const initialState: InitialStateType = {
     pageSize: 30,
     totalUsersCount: 0,
     currentPage: 1,
-    isFetching: false
+    isFetching: false,
+    followingInProgress: false
 };
 const usersReducer = (state = initialState, action: ActionTypes) => {
     switch (action.type) {
@@ -68,6 +71,9 @@ const usersReducer = (state = initialState, action: ActionTypes) => {
         case "TOGGLE_IS_FETCHING": {
             return {...state, isFetching: action.isFetching}
         }
+        case "TOGGLE_IS_FOLLOWING_PROGRESS":{
+            return {...state,followingInProgress:action.followingInProgress}
+        }
         default:
             return state
     }
@@ -82,7 +88,7 @@ export type ActionFollowTypes =
     | ReturnType<typeof setCurrentPage>
     | ReturnType<typeof setTotalUsersCount>
     | ReturnType<typeof toggleIsFetching>
-
+    | ReturnType<typeof toggleFollowingProgress>
 
 export const follow = (userId: number) => ({type: 'FOLLOW', userId} as const);
 
@@ -91,8 +97,13 @@ export const unFollow = (userId: number) => ({type: "UNFOLLOW", userId} as const
 export const setUsers = (users: any) => ({type: "SET_USERS", users} as const);
 
 export const setCurrentPage = (currentPage: number) => ({type: 'SET_CURRENT_PAGE', currentPage} as const);
-export const setTotalUsersCount = (totalCount: number) => ({type: 'SET_TOTAL_USERS_COUNT', totalCount} as const);
+export const setTotalUsersCount = (totalCount: number) =>
+    ({type: 'SET_TOTAL_USERS_COUNT', totalCount} as const);
 
-export const toggleIsFetching = (isFetching: boolean) => ({type: 'TOGGLE_IS_FETCHING', isFetching} as const);
+export const toggleIsFetching = (isFetching: boolean) =>
+    ({type: 'TOGGLE_IS_FETCHING', isFetching} as const);
+
+export const toggleFollowingProgress = (followingInProgress:boolean) =>
+    ({type: 'TOGGLE_IS_FOLLOWING_PROGRESS',followingInProgress} as const)
 
 export default usersReducer

@@ -3,9 +3,9 @@
     grid-area: h;
     background-color: teal;
 }
-
 .header img {
     width: 39px;
 }
-
-
+.loginBlock {
+    float: right;
+}

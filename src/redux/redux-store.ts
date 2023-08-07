@@ -3,6 +3,7 @@ import dialogsReducer, {ActionMessagesTypes} from "./dialogs-reducer";
 import profileReducer, {ActionPostTypes} from "./profile-reducer";
 import sidebarReducer from "./sidebar-reducer";
 import usersReducer, {ActionFollowTypes} from "./users-reducer";
+import authReducer, {ActionAuthTypes} from "./auth-reducer";
 
 
 
@@ -53,6 +54,7 @@ export type StateType = {
     dialogsPage: DialogsPageType;
     sidebar: SitebarType;
     usersPage:any
+    auth:any
 }
 
 export type StoreType = {
@@ -63,14 +65,15 @@ export type StoreType = {
     dispatch: (action: ActionTypes) => void
 }
 
-export type ActionTypes = ActionPostTypes | ActionMessagesTypes | ActionFollowTypes
+export type ActionTypes = ActionPostTypes | ActionMessagesTypes | ActionFollowTypes | ActionAuthTypes
 
 
 let reducers = combineReducers({
     profilePage:profileReducer,
     dialogsPage:dialogsReducer,
     sidebar:sidebarReducer,
-    usersPage:usersReducer
+    usersPage:usersReducer,
+    auth:authReducer
 })
 const store: Store<StoreType, ActionTypes> = createStore(reducers);
 
