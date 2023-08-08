@@ -1,10 +1,10 @@
-import {combineReducers, createStore, Store} from "redux";
+import {applyMiddleware, combineReducers, createStore, legacy_createStore, Store} from "redux";
 import dialogsReducer, {ActionMessagesTypes} from "./dialogs-reducer";
 import profileReducer, {ActionPostTypes} from "./profile-reducer";
 import sidebarReducer from "./sidebar-reducer";
 import usersReducer, {ActionFollowTypes} from "./users-reducer";
 import authReducer, {ActionAuthTypes} from "./auth-reducer";
-
+import thunkMiddleware, {ThunkDispatch} from 'redux-thunk'
 
 
 export type PostType = {
@@ -75,6 +75,6 @@ let reducers = combineReducers({
     usersPage:usersReducer,
     auth:authReducer
 })
-const store: Store<StoreType, ActionTypes> = createStore(reducers);
-
+const store = legacy_createStore(reducers,applyMiddleware(thunkMiddleware));
+export type AppRootStateType = ReturnType<typeof reducers>
 export default store

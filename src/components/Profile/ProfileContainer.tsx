@@ -4,15 +4,15 @@ import { useLocation, useNavigate, useParams } from "react-router-dom";
 import axios, { AxiosResponse } from "axios";
 import Profile from "./Profile";
 import { ProfilePageType, StateType } from "../../redux/redux-store";
-import { setUserProfile } from "../../redux/profile-reducer";
+import {getProfileThunkCreator, setUserProfile} from "../../redux/profile-reducer";
 
 type PathParamsType = {
     userId: string;
 };
 
 type ProfileContainerProps = {
-    setUserProfile: (profile: ProfilePageType) => void;
     profile: any;
+    getProfileThunkCreator:(userId:string)=>void
 };
 
 function ProfileContainer(props: ProfileContainerProps) {
@@ -25,11 +25,9 @@ function ProfileContainer(props: ProfileContainerProps) {
         if (!userId) {
             userId = "2";
         }
-        axios
-            .get(`https://social-network.samuraijs.com/api/1.0/profile/` + userId)
-            .then((response: AxiosResponse) => {
-                props.setUserProfile(response.data);
-            });
+
+      props.getProfileThunkCreator(userId)
+
     }, []);
 
     return <Profile profile={props.profile} />;
@@ -39,4 +37,4 @@ const mapStateToProps = (state: StateType) => ({
     profile: state.profilePage.profile,
 });
 
-export default connect(mapStateToProps, { setUserProfile })(ProfileContainer);
+export default connect(mapStateToProps, { getProfileThunkCreator })(ProfileContainer);

@@ -1,4 +1,7 @@
 import {ActionTypes, PostType, ProfilePageType} from "./redux-store";
+import {Dispatch} from "redux";
+import {userAPI} from "../api/api";
+import {AxiosResponse} from "axios";
 
 
 let initialState = {
@@ -34,7 +37,7 @@ const profileReducer = (state = initialState, action: ActionTypes) => {
 
         case "SET_USER_PROFILE": {
             return {
-                ...state ,profile:action.profile
+                ...state, profile: action.profile
             }
         }
 
@@ -57,4 +60,11 @@ export const updateNewPostTextActionCreator = (text: string) =>
 export const setUserProfile = (profile: ProfilePageType) =>
     ({type: "SET_USER_PROFILE", profile} as const);
 
+export const getProfileThunkCreator = (userId: string) => (dispatch: Dispatch) => {
+    userAPI.getProfile(userId)
+        .then((response: AxiosResponse) => {
+            dispatch(setUserProfile(response.data))
+        });
+
+}
 export default profileReducer
