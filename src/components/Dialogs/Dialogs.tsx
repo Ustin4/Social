@@ -3,29 +3,32 @@ import s from './Dialogs.module.css'
 import DialogItem from "./Dialogitem/Dialogsitem";
 import Message from "./Message/Message";
 import {DialogsPageType} from "../../redux/redux-store";
-
+import {Navigate} from "react-router-dom";
 
 
 type PropsType = {
     dialogsPage: DialogsPageType
-    updateNewMessage: (text:string) => void
-    onSendMessageClick:()=>void
+    updateNewMessage: (text: string) => void
+    onSendMessageClick: () => void
 
 };
 
-const Dialogs: React.FC<PropsType> = ({ dialogsPage
+const Dialogs: React.FC<PropsType> = ({
+                                          dialogsPage
                                           , updateNewMessage
-                                          ,onSendMessageClick}) => {
+                                          , onSendMessageClick
 
-let state = dialogsPage
+                                      }) => {
 
-    let dialogsElements = state.dialogs.map((d) => (<DialogItem  key={d.id} name={d.name} id={d.id} />));
-    let messagesElements = state.messages.map((m) => (<Message key={m.id} message={m.messages} />));
+    let state = dialogsPage
+
+    let dialogsElements = state.dialogs.map((d) => (<DialogItem key={d.id} name={d.name} id={d.id}/>));
+    let messagesElements = state.messages.map((m) => (<Message key={m.id} message={m.messages}/>));
     let newMessagesText = state.newMessagesText;
 
 
     const messagePostsClickHandler = () => {
-       onSendMessageClick()
+        onSendMessageClick()
     };
 
 

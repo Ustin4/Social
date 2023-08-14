@@ -36,7 +36,8 @@ export type ProfilePageType = {
     };
     posts: Array<PostType>;
     newPostText: string;
-    profile:string
+    profile: string
+    status:string
 }
 
 export type DialogsPageType = {
@@ -53,28 +54,36 @@ export type StateType = {
     profilePage: ProfilePageType;
     dialogsPage: DialogsPageType;
     sidebar: SitebarType;
-    usersPage:any
-    auth:any
+    usersPage: any
+    auth: any
+
 }
 
-export type StoreType = {
-    _state: StateType
-    _callSubscriber: (_state: StateType) => void
-    subscribe: (observer: () => void) => void
-    getState: () => StateType
-    dispatch: (action: ActionTypes) => void
-}
+// export type StoreType = {
+//     _state: StateType
+//     _callSubscriber: (_state: StateType) => void
+//     subscribe: (observer: () => void) => void
+//     getState: () => StateType
+//     dispatch: (action: ActionTypes) => void
+// }
 
-export type ActionTypes = ActionPostTypes | ActionMessagesTypes | ActionFollowTypes | ActionAuthTypes
+type ReducersType = typeof reducers
+export type AppRootStateType = ReturnType<ReducersType>
+
+export type ActionTypes = ActionPostTypes
+    | ActionMessagesTypes
+    | ActionFollowTypes
+    | ActionAuthTypes
 
 
 let reducers = combineReducers({
-    profilePage:profileReducer,
-    dialogsPage:dialogsReducer,
-    sidebar:sidebarReducer,
-    usersPage:usersReducer,
-    auth:authReducer
+    profilePage: profileReducer,
+    dialogsPage: dialogsReducer,
+    sidebar: sidebarReducer,
+    usersPage: usersReducer,
+    auth: authReducer
 })
-const store = legacy_createStore(reducers,applyMiddleware(thunkMiddleware));
-export type AppRootStateType = ReturnType<typeof reducers>
+const store = legacy_createStore(reducers, applyMiddleware(thunkMiddleware));
+
+
 export default store

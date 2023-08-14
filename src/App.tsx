@@ -7,6 +7,7 @@ import DialogsContainer from "./components/Dialogs/DialogsContainer";
 import UsersContainer from "./components/Users/UsersContainer";
 import ProfileContainer from "./components/Profile/ProfileContainer";
 import HeaderContainer from "./components/Header/HeaderContainer";
+import Login from "./components/Login/Login";
 
 
 const App: React.FC<{/* store: StoreType,*/  }> = ({ /*store*/ }) => {
@@ -18,9 +19,10 @@ const App: React.FC<{/* store: StoreType,*/  }> = ({ /*store*/ }) => {
             <div className="app-booker-content">
                 <Routes>
                     <Route path="dialogs/*" element={<DialogsContainer/>} />
-                    <Route path="profile/:userId*" element={<ProfileContainer />} />
+                    <Route path="profile/:userId?" element={<ProfileContainer />} />
                     <Route path="news/*" element={<News />} />
                     <Route path="users/*" element={<UsersContainer/>} />
+                    <Route path="login/*" element={<Login/>} />
                 </Routes>
             </div>
         </div>

@@ -1,40 +1,53 @@
-import React, { useEffect } from "react";
-import { connect } from "react-redux";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
-import axios, { AxiosResponse } from "axios";
+import React, {useEffect} from "react";
+import {connect} from "react-redux";
+import {useLocation, useNavigate, useParams} from "react-router-dom";
 import Profile from "./Profile";
-import { ProfilePageType, StateType } from "../../redux/redux-store";
-import {getProfileThunkCreator, setUserProfile} from "../../redux/profile-reducer";
+import {StateType} from "../../redux/redux-store";
+import {getProfileThunkCreator, getStatus, updateStatus} from "../../redux/profile-reducer";
+import {withAuthRedirect} from "../../hoc/withAuthRedirect";
+import {compose} from "redux";
 
 type PathParamsType = {
     userId: string;
 };
 
 type ProfileContainerProps = {
+    getProfileThunkCreator: (userId: string) => void
+    getStatus: (userId: string) => void
+    updateStatus:(status:string)=>void
+    status:string
     profile: any;
-    getProfileThunkCreator:(userId:string)=>void
 };
 
 function ProfileContainer(props: ProfileContainerProps) {
-    const location = useLocation();
-    const navigate = useNavigate();
     const params = useParams<PathParamsType>();
 
     useEffect(() => {
-        let userId = params.userId;
-        if (!userId) {
-            userId = "2";
-        }
+        const userId = params.userId || "2";
+        props.getProfileThunkCreator(userId)
 
-      props.getProfileThunkCreator(userId)
+        props.getStatus(userId)
 
     }, []);
 
-    return <Profile profile={props.profile} />;
+    return (
+        <Profile profile={props.profile}
+                 status={props.status}
+                 updateStatus={props.updateStatus}
+        />
+    )
 }
+
+// let AuthRedirectComponent =withAuthRedirect(ProfileContainer)
 
 const mapStateToProps = (state: StateType) => ({
     profile: state.profilePage.profile,
+    status:state.profilePage.status
 });
 
-export default connect(mapStateToProps, { getProfileThunkCreator })(ProfileContainer);
+
+export default compose<React.ComponentType>(
+    connect(mapStateToProps, {getProfileThunkCreator,getStatus,updateStatus}),
+    withAuthRedirect
+)(ProfileContainer)
+;
