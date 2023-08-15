@@ -3,7 +3,8 @@ import s from "./users.module.css";
 import userPhoto from "../../assets/images/Sample_User_Icon.png";
 import {UserType} from "../../redux/users-reducer";
 import {NavLink} from "react-router-dom";
-import {Avatar, Button, Pagination} from "@mui/material";
+import {Avatar} from "@mui/material";
+import CustomPagination from "../../Utils/Pagination";
 
 export type UsersPropsType = {
     users: UserType[]
@@ -26,11 +27,14 @@ let Users = (props: UsersPropsType) => {
         pages.push(i)
     }
 
+    const handlePageChange = (event: React.ChangeEvent<unknown>, page: number) => {
+        props.onPageChanged(page);
+    }
+
     return <div>
+
         {pages.map(p => {
-
             // @ts-ignore
-
             return <span className={props.currentPage === p && s.selectedPage}
                          onClick={(e) => {
                              props.onPageChanged(p)
