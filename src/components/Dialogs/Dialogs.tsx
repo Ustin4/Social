@@ -3,8 +3,8 @@ import s from './Dialogs.module.css'
 import DialogItem from "./Dialogitem/Dialogsitem";
 import Message from "./Message/Message";
 import {DialogsPageType} from "../../redux/redux-store";
-import {Navigate} from "react-router-dom";
-
+import {Button, TextField} from "@mui/material";
+import SendIcon from '@mui/icons-material/Send';
 
 type PropsType = {
     dialogsPage: DialogsPageType
@@ -45,16 +45,32 @@ const Dialogs: React.FC<PropsType> = ({
             </div>
             <div className={s.messagesTextBox}>
                 <div>
-          <textarea
-              placeholder="Enter your message"
-              onChange={onChangeMessagePostsHandler}
-              value={newMessagesText}
-          />
+
+                    <TextField fullWidth label="Enter your message"
+                               id="fullWidth"
+                               onChange={onChangeMessagePostsHandler}
+                               value={newMessagesText}
+                               size={'small'}
+                    />
+
+                    {/*<textarea*/}
+                    {/*    placeholder="Enter your message"*/}
+                    {/*    onChange={onChangeMessagePostsHandler}*/}
+                    {/*    value={newMessagesText}*/}
+                    {/*/>*/}
                 </div>
                 <div>
-                    <button className={s.buttonMessages} onClick={messagePostsClickHandler}>
-                        add
-                    </button>
+                    {/*<button className={s.buttonMessages} onClick={messagePostsClickHandler}>*/}
+                    {/*    add*/}
+                    {/*</button>*/}
+
+                    <Button variant="contained"
+                            endIcon={<SendIcon />}
+                            className={s.buttonMessages}
+                            onClick={messagePostsClickHandler}
+
+                    >add
+                    </Button>
                 </div>
             </div>
         </div>

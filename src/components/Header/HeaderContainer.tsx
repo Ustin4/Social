@@ -1,9 +1,8 @@
 import React from "react";
 import Header from "./Header";
 import {connect} from "react-redux";
-import {DataType, getAuthUserData, setUserData} from "../../redux/auth-reducer";
+import {getAuthUserData} from "../../redux/auth-reducer";
 import {StateType} from "../../redux/redux-store";
-import {authAPI, userAPI} from "../../api/api";
 
 
 type HeaderContainerProps = {
