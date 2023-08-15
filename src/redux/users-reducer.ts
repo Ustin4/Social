@@ -79,6 +79,10 @@ const usersReducer = (state = initialState, action: ActionTypes) => {
                     : state.followingInProgress.filter(id => id != action.userId)
             }
         }
+        case "SET_CURRENT_PAGE_NUMBER_FOR_PAGINATION":
+            return {
+                ...state, currentPage: action.currentPageNumber
+            }
         default:
             return state
     }
@@ -86,7 +90,7 @@ const usersReducer = (state = initialState, action: ActionTypes) => {
 }
 
 
-export type ActionFollowTypes =
+export type ActionUsersTypes =
     ReturnType<typeof followSuccess>
     | ReturnType<typeof unFollowSuccess>
     | ReturnType<typeof setUsers>
@@ -94,6 +98,7 @@ export type ActionFollowTypes =
     | ReturnType<typeof setTotalUsersCount>
     | ReturnType<typeof toggleIsFetching>
     | ReturnType<typeof toggleFollowingProgress>
+    | ReturnType<typeof setCurrentPageNumberForPagination>
 
 export const followSuccess = (userId: number) => ({type: 'FOLLOW', userId} as const);
 
@@ -102,14 +107,17 @@ export const unFollowSuccess = (userId: number) => ({type: "UNFOLLOW", userId} a
 export const setUsers = (users: any) => ({type: "SET_USERS", users} as const);
 
 export const setCurrentPage = (currentPage: number) => ({type: 'SET_CURRENT_PAGE', currentPage} as const);
-export const setTotalUsersCount = (totalCount: number) =>
-    ({type: 'SET_TOTAL_USERS_COUNT', totalCount} as const);
+export const setTotalUsersCount = (totalCount: number) => ({type: 'SET_TOTAL_USERS_COUNT', totalCount} as const);
 
-export const toggleIsFetching = (isFetching: boolean) =>
-    ({type: 'TOGGLE_IS_FETCHING', isFetching} as const);
+export const toggleIsFetching = (isFetching: boolean) => ({type: 'TOGGLE_IS_FETCHING', isFetching} as const);
 
 export const toggleFollowingProgress = (followingInProgress: boolean, userId: number) =>
     ({type: 'TOGGLE_IS_FOLLOWING_PROGRESS', followingInProgress, userId} as const)
+export const setCurrentPageNumberForPagination = (currentPageNumber: number) => ({
+    type: 'SET_CURRENT_PAGE_NUMBER_FOR_PAGINATION',
+    currentPageNumber
+} as const)
+
 
 export const getUsersThunkCreator = (currentPage: number, pageSize: number) => {
     return (dispatch: Dispatch) => {
@@ -120,7 +128,7 @@ export const getUsersThunkCreator = (currentPage: number, pageSize: number) => {
                 dispatch(toggleIsFetching(false))
                 dispatch(setUsers(data.items))
                 dispatch(setTotalUsersCount(data.totalCount))
-
+                dispatch(setCurrentPageNumberForPagination(currentPage))
             })
     }
 }

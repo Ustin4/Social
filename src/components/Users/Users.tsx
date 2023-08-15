@@ -32,14 +32,19 @@ let Users = (props: UsersPropsType) => {
     }
 
     return <div>
-
-        {pages.map(p => {
-            // @ts-ignore
-            return <span className={props.currentPage === p && s.selectedPage}
-                         onClick={(e) => {
-                             props.onPageChanged(p)
-                         }}> {p} </span>
-        })}
+        <CustomPagination
+            currentPage={props.currentPage}
+            onPageChanged={props.onPageChanged}
+            pageSize={props.pageSize}
+            totalUsersCount={props.totalUsersCount}
+        />
+        {/*{pages.map(p => {*/}
+        {/*    // @ts-ignore*/}
+        {/*    return <span className={props.currentPage === p && s.selectedPage}*/}
+        {/*                 onClick={(e) => {*/}
+        {/*                     props.onPageChanged(p)*/}
+        {/*                 }}> {p} </span>*/}
+        {/*})}*/}
         {
             props.users.map(u => <div key={u.id}>
                 <span>

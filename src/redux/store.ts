@@ -1,7 +1,7 @@
 import profileReducer, {ActionPostTypes} from "./profile-reducer";
 import dialogsReducer, {ActionMessagesTypes} from "./dialogs-reducer";
 import sidebarReducer from "./sidebar-reducer";
-import {ActionFollowTypes} from "./users-reducer";
+import {ActionUsersTypes} from "./users-reducer";
 
 
 /*

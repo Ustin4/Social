@@ -3,7 +3,9 @@ import s from './Dialogs.module.css'
 import DialogItem from "./Dialogitem/Dialogsitem";
 import Message from "./Message/Message";
 import {DialogsPageType} from "../../redux/redux-store";
-import {Button, TextField} from "@mui/material";
+import {useFormik} from "formik";
+import TextField from "@mui/material/TextField";
+import Button from "@mui/material/Button";
 import SendIcon from '@mui/icons-material/Send';
 
 type PropsType = {
@@ -12,6 +14,9 @@ type PropsType = {
     onSendMessageClick: () => void
 
 };
+type SendParamsType = {
+    send: string
+}
 
 const Dialogs: React.FC<PropsType> = ({
                                           dialogsPage
@@ -25,7 +30,17 @@ const Dialogs: React.FC<PropsType> = ({
     let dialogsElements = state.dialogs.map((d) => (<DialogItem key={d.id} name={d.name} id={d.id}/>));
     let messagesElements = state.messages.map((m) => (<Message key={m.id} message={m.messages}/>));
     let newMessagesText = state.newMessagesText;
+    const formik = useFormik({
+        initialValues: {
+            send: '',
+        },
 
+        onSubmit: (values: SendParamsType) => {
+            formik.resetForm()
+            console.log(values)
+
+        }
+    })
 
     const messagePostsClickHandler = () => {
         onSendMessageClick()
@@ -43,36 +58,43 @@ const Dialogs: React.FC<PropsType> = ({
             <div className={s.messages}>
                 <div>{messagesElements}</div>
             </div>
-            <div className={s.messagesTextBox}>
-                <div>
+            <form onSubmit={formik.handleSubmit}>
+                <div className={s.messagesTextBox}>
+                    <div>
 
-                    <TextField fullWidth label="Enter your message"
-                               id="fullWidth"
-                               onChange={onChangeMessagePostsHandler}
-                               value={newMessagesText}
-                               size={'small'}
-                    />
+                        <TextField
+                            fullWidth
+                            label="Enter your message"
+                            id="fullWidth"
+                            // onChange={onChangeMessagePostsHandler}
+                            // value={newMessagesText}
+                            size={'small'}
+                            {...formik.getFieldProps('send')}
+                        />
 
-                    {/*<textarea*/}
-                    {/*    placeholder="Enter your message"*/}
-                    {/*    onChange={onChangeMessagePostsHandler}*/}
-                    {/*    value={newMessagesText}*/}
-                    {/*/>*/}
-                </div>
-                <div>
-                    {/*<button className={s.buttonMessages} onClick={messagePostsClickHandler}>*/}
-                    {/*    add*/}
-                    {/*</button>*/}
+                        {/*<textarea*/}
+                        {/*    placeholder="Enter your message"*/}
+                        {/*    onChange={onChangeMessagePostsHandler}*/}
+                        {/*    value={newMessagesText}*/}
+                        {/*/>*/}
+                    </div>
+                    <div>
+                        {/*<button className={s.buttonMessages} onClick={messagePostsClickHandler}>*/}
+                        {/*    add*/}
+                        {/*</button>*/}
 
-                    <Button variant="contained"
-                            endIcon={<SendIcon />}
+                        <Button
+                            type={"submit"}
+                            variant="contained"
+                            endIcon={<SendIcon/>}
                             className={s.buttonMessages}
                             onClick={messagePostsClickHandler}
 
-                    >add
-                    </Button>
+                        >add
+                        </Button>
+                    </div>
                 </div>
-            </div>
+            </form>
         </div>
     );
 };

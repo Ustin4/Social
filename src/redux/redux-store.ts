@@ -2,7 +2,7 @@ import {AnyAction, applyMiddleware, combineReducers, legacy_createStore} from "r
 import dialogsReducer, {ActionMessagesTypes} from "./dialogs-reducer";
 import profileReducer, {ActionPostTypes} from "./profile-reducer";
 import sidebarReducer from "./sidebar-reducer";
-import usersReducer, {ActionFollowTypes} from "./users-reducer";
+import usersReducer, {ActionUsersTypes} from "./users-reducer";
 import authReducer, {ActionAuthTypes} from "./auth-reducer";
 import thunkMiddleware, {ThunkDispatch} from 'redux-thunk'
 import {TypedUseSelectorHook, useDispatch, useSelector} from "react-redux";
@@ -72,7 +72,7 @@ export type AppRootStateType = ReturnType<typeof reducers>
 
 export type ActionTypes = ActionPostTypes
     | ActionMessagesTypes
-    | ActionFollowTypes
+    | ActionUsersTypes
     | ActionAuthTypes
 
 let reducers = combineReducers({

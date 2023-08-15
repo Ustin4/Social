@@ -37,12 +37,7 @@ import {useAppDispatch, useAppSelector} from "../../redux/redux-store";
 import {Navigate} from "react-router-dom";
 
 
-export type FormType = {
-    email?: string
-    password?: string
-    rememberMe?: boolean
 
-}
 export default function LoginForm() {
     const isAuth = useAppSelector(state => state.auth.isAuth)
 
