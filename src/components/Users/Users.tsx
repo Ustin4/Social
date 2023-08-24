@@ -4,7 +4,7 @@ import userPhoto from "../../assets/images/Sample_User_Icon.png";
 import {UserType} from "../../redux/users-reducer";
 import {NavLink} from "react-router-dom";
 import {Avatar} from "@mui/material";
-import CustomPagination from "../../Utils/Pagination";
+import CustomPagination from "../../utils/Pagination";
 
 export type UsersPropsType = {
     users: UserType[]

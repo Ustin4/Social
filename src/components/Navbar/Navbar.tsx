@@ -3,7 +3,7 @@ import s from './Navbar.module.css'
 
 import {NavLink} from "react-router-dom";
 import FriendContainer from "../Friends/FriendContainer";
-import ButtonAppBar from "../../Utils/AppBar";
+import ButtonAppBar from "../../utils/AppBar";
 /*
 type PropsType = {
     sidebar:SitebarType

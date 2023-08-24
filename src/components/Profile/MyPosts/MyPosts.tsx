@@ -1,57 +1,68 @@
-import React, {RefObject} from "react";
+import React from "react";
 import s from "./MyPosts.module.css";
 import Post from "./Post/Post";
 import {PostType} from "../../../redux/redux-store";
+import {useFormik} from "formik";
+import TextField from "@mui/material/TextField";
+import Button from "@mui/material/Button";
+import SendIcon from "@mui/icons-material/Send";
+import {validateFromMyPosts} from "../../../utils/validator/validators";
 
 
 type PropsType = {
     posts: Array<PostType>;
-    newPostText: string;
-    updateNewPostText: (text: string) => void
-    addPost:()=>void
+    addPost: (text: string | undefined) => void
 };
 
 const MyPosts: React.FC<PropsType> = ({
                                           posts,
-                                          newPostText,
-                                          updateNewPostText,
                                           addPost
                                       }) => {
+    const formik = useFormik({
+        initialValues: {
+            send: '',
+        },
+        validate: (values) => {
+            return validateFromMyPosts(values)
+        },
 
-
+        onSubmit: (values) => {
+            addPost(values.send)
+            formik.resetForm()
+        }
+    })
     let postsElements = posts.map((p) => (
         <Post key={p.id} messages={p.message} likesCount={p.likesCount}/>
     ));
-
-    let newPostElement: RefObject<HTMLTextAreaElement> = React.createRef();
-
-    const addPostClickHandler = () => {
-      addPost()
-    };
-
-    const onChangePostHandler = () => {
-        let text = newPostElement.current?.value || "";
-        //dispatch(updateNewPostTextActionCreator(text));
-        updateNewPostText(text)
-    };
-
     return (
         <div className={s['postsBlock']}>
             <h3>My posts</h3>
-            <div>
+            <form onSubmit={formik.handleSubmit}>
                 <div>
-          <textarea
-              ref={newPostElement}
-              onChange={onChangePostHandler}
-              value={newPostText}
-          />
+                    <div>
+                        <TextField
+                            fullWidth
+                            label="Enter your message"
+                            id="fullWidth"
+                            size={'small'}
+                            {...formik.getFieldProps('send')}
+                        />
+                        {formik.errors.send ? <div style={{color: "red"}}>{formik.errors.send}</div> : null}
+                    </div>
+                    <div>
+                        <Button
+                            type={"submit"}
+                            variant="contained"
+                            endIcon={<SendIcon/>}
+                            className={s.buttonMessages}
+                        >add
+                        </Button>
+                    </div>
                 </div>
-                <div>
-                    <button onClick={addPostClickHandler}>Add post</button>
-                </div>
-            </div>
-            <div className={s.posts}>{postsElements}</div>
+                <div className={s.posts}>{postsElements}</div>
+            </form>
         </div>
+
     );
 };
 

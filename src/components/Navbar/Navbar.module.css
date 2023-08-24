@@ -1,21 +1,21 @@
 
 .nav {
     grid-area: n;
-    background-color: yellowgreen;
+    background-color:darkslategray;
     padding: 20px;
 }
 
 .item  {
-    color: white;
+    color: darkgray;
 text-decoration: none;
 }
 
 .active {
-    color: gold;
+    color: wheat;
 }
 
 .friends{
     padding: 50px 1px;
-    color: white;
+    color: red;
     text-decoration: none;
 }

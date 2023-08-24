@@ -4,19 +4,23 @@ import MyPostsContainer from "./MyPosts/MyPostsContainer";
 import {ProfilePageType} from "../../redux/redux-store";
 
 type ProfilePropsType = {
-    profile:ProfilePageType
-    updateStatus:(status:string)=>void
-    status:string
+    profile: ProfilePageType
+    updateStatus: (status: string) => void
+    status: string
 };
 
-const Profile/*: React.FC<PropsType>*/ = (props:ProfilePropsType) => {
+const Profile: React.FC<ProfilePropsType> = ({
+                                                 profile,
+                                                 updateStatus,
+                                                 status
+                                             }) => {
     return (
         <div>
-            <ProfileInfo profile={props.profile}
-                         status={props.status}
-                         updateStatus={props.updateStatus}
+            <ProfileInfo profile={profile}
+                         status={status}
+                         updateStatus={updateStatus}
             />
-            <MyPostsContainer />
+            <MyPostsContainer/>
         </div>
     );
 };

@@ -1,28 +1,3 @@
-// import React from "react";
-//
-// type LoginPropsType = {}
-//
-// const Login = (props: LoginPropsType) => {
-//     return <div>
-//         <h1>Login</h1>
-//         <form>
-//             <div>
-//                 <input placeholder={'Login'}/>
-//             </div>
-//             <div>
-//                 <input placeholder={'Password'}/>
-//             </div>
-//             <div>
-//                 <input type="checkbox"/> remember me
-//             </div>
-//             <div>
-//                 <button>Login</button>
-//             </div>
-//         </form>
-//     </div>
-// }
-// export default Login
-
 import * as React from 'react';
 import Button from '@mui/material/Button';
 import TextField from '@mui/material/TextField';
@@ -30,12 +5,12 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
 import Grid from '@mui/material/Grid';
 import {useFormik} from "formik";
-import {useDispatch, useSelector} from "react-redux";
-import {LoginParamsType, loginTC} from "../../redux/auth-reducer";
+import {LoginParamsType, loginTC, logoutTC} from "../../redux/auth-reducer";
 import {FormControl, FormGroup, FormLabel} from "@mui/material";
 import {useAppDispatch, useAppSelector} from "../../redux/redux-store";
 import {Navigate} from "react-router-dom";
-
+import {validateFromLogin} from "../../utils/validator/validators";
+import {connect} from "react-redux";
 
 
 export default function LoginForm() {
@@ -48,13 +23,17 @@ export default function LoginForm() {
             password: '',
             rememberMe: false
         },
+        validate: (values) => {
+            return validateFromLogin(values);
+        },
+
         onSubmit: (values: LoginParamsType) => {
             dispatch(loginTC(values))
             formik.resetForm()
             console.log(values)
         },
     })
-    if (isAuth) return <Navigate to={'/'}/>
+    if (isAuth) return <Navigate to={'/profile'}/>
 
     return <Grid container justifyContent={'center'}>
         <Grid item justifyContent={'center'}>
@@ -74,10 +53,6 @@ export default function LoginForm() {
 
                         <TextField label="Email"
                                    margin="normal"
-                            // name={"email"}
-                            // onChange={formik.handleChange}
-                            // value={formik.values.email}
-                            // onBlur={formik.handleBlur}
                                    {...formik.getFieldProps('email')}
                         />
                         {formik.touched.email && formik.errors.email &&
@@ -85,10 +60,6 @@ export default function LoginForm() {
                         <TextField type="password"
                                    label="Password"
                                    margin="normal"
-                            // name={"password"}
-                            // onChange={formik.handleChange}
-                            // value={formik.values.password}
-                            // onBlur={formik.handleBlur}
                                    {...formik.getFieldProps('password')}
                         />
                         {formik.touched.password && formik.errors.password &&
@@ -109,11 +80,13 @@ export default function LoginForm() {
         </Grid>
     </Grid>
 }
-const Login = (props: any) => {
-    return <>
-        <LoginForm/>
-    </>
-}
+
+// const Login = (props: any) => {
+//     return <>
+//         <LoginForm/>
+//     </>
+// }
+// export default connect(null, {loginTC, logoutTC})(Login)
 
 
 //     <ThemeProvider theme={defaultTheme}>

@@ -10,17 +10,13 @@ import SendIcon from '@mui/icons-material/Send';
 
 type PropsType = {
     dialogsPage: DialogsPageType
-    updateNewMessage: (text: string) => void
-    onSendMessageClick: () => void
+    onSendMessageClick: (newMessagesText: string) => void
 
 };
-type SendParamsType = {
-    send: string
-}
+
 
 const Dialogs: React.FC<PropsType> = ({
                                           dialogsPage
-                                          , updateNewMessage
                                           , onSendMessageClick
 
                                       }) => {
@@ -35,22 +31,13 @@ const Dialogs: React.FC<PropsType> = ({
             send: '',
         },
 
-        onSubmit: (values: SendParamsType) => {
+        onSubmit: (values) => {
+            onSendMessageClick(values.send)
             formik.resetForm()
             console.log(values)
 
         }
     })
-
-    const messagePostsClickHandler = () => {
-        onSendMessageClick()
-    };
-
-
-    const onChangeMessagePostsHandler = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
-        let text = e.target.value;
-        updateNewMessage(text)
-    };
 
     return (
         <div className={s.dialogs}>
@@ -66,30 +53,16 @@ const Dialogs: React.FC<PropsType> = ({
                             fullWidth
                             label="Enter your message"
                             id="fullWidth"
-                            // onChange={onChangeMessagePostsHandler}
-                            // value={newMessagesText}
                             size={'small'}
                             {...formik.getFieldProps('send')}
                         />
-
-                        {/*<textarea*/}
-                        {/*    placeholder="Enter your message"*/}
-                        {/*    onChange={onChangeMessagePostsHandler}*/}
-                        {/*    value={newMessagesText}*/}
-                        {/*/>*/}
                     </div>
                     <div>
-                        {/*<button className={s.buttonMessages} onClick={messagePostsClickHandler}>*/}
-                        {/*    add*/}
-                        {/*</button>*/}
-
                         <Button
                             type={"submit"}
                             variant="contained"
                             endIcon={<SendIcon/>}
                             className={s.buttonMessages}
-                            onClick={messagePostsClickHandler}
-
                         >add
                         </Button>
                     </div>

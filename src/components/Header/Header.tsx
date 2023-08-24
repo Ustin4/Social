@@ -1,13 +1,13 @@
 import React from "react";
 import s from './Header.module.css';
 import {NavLink, Route} from "react-router-dom";
-import ButtonAppBar from "../../Utils/AppBar";
+import ButtonAppBar from "../../utils/AppBar";
 
 const Header = (props:any) => {
 
     return (
         <header className={s.header}>
-            <ButtonAppBar/>
+            
             <img src="https://cdn.logo.com/hotlink-ok/logo-social.png"/>
             <div className={s.loginBlock}>
 

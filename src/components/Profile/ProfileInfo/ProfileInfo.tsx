@@ -22,7 +22,7 @@ const ProfileInfo = (props: ProfileInfoPropsType) => {
                 <img
                     src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRJzMNWNPsA8KiUFY_YiEC7rub3JEDOCUXXHwJ40dp7&s"/>
             </div>*/}
-            <div className={s.descriptionBlock}>
+            <div className={s.descriptionBlock} >
                 <img src={props.profile.photos.large ?? ''} alt="photo"/>
              <ProfileStatus status={props.status}
                             updateStatus={props.updateStatus}
@@ -31,7 +31,7 @@ const ProfileInfo = (props: ProfileInfoPropsType) => {
                 <div>
                     {Object.keys(props.profile.contacts).map(key => {
                         return (
-                            <div key={key}>
+                            <div key={key} className={s.color}>
                                 <strong>{key}: </strong>
                                 {props.profile.contacts[key] ? (
                                     <a href={props.profile.contacts[key]}>
