@@ -31,8 +31,7 @@ const authReducer = (state: InitialStateType = initialState, action: ActionAuthT
         case 'SET_USER_DATA':
             return {
                 ...state,
-                ...action.data,
-                isAuth: true
+                ...action.data
             }
         case "login/SET-IS-LOGGED-IN": {
             return {
