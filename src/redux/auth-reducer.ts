@@ -1,13 +1,8 @@
 import {authAPI} from "../api/api";
 import {Dispatch} from "redux";
+import {handleServerAppError} from "../utils/Error/handleServerAppError";
+import {handleServerNetworkError} from "../utils/Error/handleServerNetworkError";
 
-// export type DataType = {
-//     userId: any
-//     email: any
-//     login: any
-//     isAuth: boolean
-//     //isFetching: boolean
-// }
 
 export type LoginParamsType = {
     email: string
@@ -17,11 +12,9 @@ export type LoginParamsType = {
 }
 
 const initialState = {
-    // userId: null,
-    // email: null,
-    // login: null,
-    isAuth: false
-    //isFetching: false
+    isAuth: false,
+    error: null as string | null,
+    userId: '' as unknown | undefined
 };
 
 type InitialStateType = typeof initialState
@@ -38,6 +31,21 @@ const authReducer = (state: InitialStateType = initialState, action: ActionAuthT
                 ...state, isAuth: action.value
             }
         }
+        case "SET_APP_ERROR": {
+            return {
+                ...state, error: action.error
+            }
+        }
+        case "SET_APP_STATUS": {
+            return {
+                ...state, status: action.status
+            }
+        }
+        case "SET_AUTH_ME": {
+            return {
+                ...state, userId: action.userId
+            }
+        }
         default:
             return state
     }
@@ -48,21 +56,31 @@ const authReducer = (state: InitialStateType = initialState, action: ActionAuthT
 export type ActionAuthTypes =
     | ReturnType<typeof setUserData>
     | ReturnType<typeof setIsLoggedInAC>
+    | ReturnType<typeof setAppError>
+    | ReturnType<typeof setAppStatus>
+    | ReturnType<typeof setAuthMe>
 
+export type RequestStatusType = "idle" | "loading" | "succeeded" | "failed";
 
 // actions
+export const setAppStatus = (status: RequestStatusType) => ({type: 'SET_APP_STATUS', status} as const)
+export const setAppError = (error: string | null) => ({type: 'SET_APP_ERROR', error} as const)
+
 export const setIsLoggedInAC = (value: boolean) =>
     ({type: 'login/SET-IS-LOGGED-IN', value} as const)
 
+
+export const setAuthMe = (userId: number) => ({type: 'SET_AUTH_ME', userId} as const)
 export const setUserData = (data: LoginParamsType) => ({type: 'SET_USER_DATA', data} as const);
 
 
 // thunks
 export const getAuthUserData = () => (dispatch: Dispatch) => {
-    authAPI.authMe()
+    return authAPI.authMe()
         .then(data => {
-            if (data.resultCode === 0) {
+            if (data.data.resultCode === 0) {
                 dispatch(setIsLoggedInAC(true))
+                dispatch(setAuthMe(data.data.data.id))
             }
         });
 }
@@ -76,13 +94,17 @@ export const logoutTC = () => (dispatch: Dispatch<ActionAuthTypes>) => {
 }
 
 export const loginTC = (data: LoginParamsType) => (dispatch: Dispatch<ActionAuthTypes>) => {
+
     authAPI.authLogin(data)
         .then(res => {
             if (res.data.resultCode === 0) {
                 dispatch(setIsLoggedInAC(true))
             } else {
-                return ''
+                handleServerAppError(res.data, dispatch);
             }
+        })
+        .catch((e) => {
+            handleServerNetworkError(e, dispatch);
         })
 }
 export default authReducer

@@ -79,5 +79,4 @@ export default compose<React.ComponentType>(
             follow: followSuccess, unFollow: unFollowSuccess, setCurrentPage,
             toggleFollowingProgress, getUsersThunkCreator
         }),
-    withAuthRedirect
 )(UsersContainer)

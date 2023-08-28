@@ -6,6 +6,7 @@ import usersReducer, {ActionUsersTypes} from "./users-reducer";
 import authReducer, {ActionAuthTypes} from "./auth-reducer";
 import thunkMiddleware, {ThunkDispatch} from 'redux-thunk'
 import {TypedUseSelectorHook, useDispatch, useSelector} from "react-redux";
+import appReducer, {ActionAppTypes} from "./app-reducer";
 
 
 export type PostType = {
@@ -38,7 +39,7 @@ export type ProfilePageType = {
     posts: Array<PostType>;
     newPostText: string;
     profile: string
-    status:string
+    status: string
 }
 
 export type DialogsPageType = {
@@ -60,32 +61,28 @@ export type StateType = {
 
 }
 
-// export type StoreType = {
-//     _state: StateType
-//     _callSubscriber: (_state: StateType) => void
-//     subscribe: (observer: () => void) => void
-//     getState: () => StateType
-//     dispatch: (action: ActionTypes) => void
-// }
-
-export type AppRootStateType = ReturnType<typeof reducers>
-
 export type ActionTypes = ActionPostTypes
     | ActionMessagesTypes
     | ActionUsersTypes
     | ActionAuthTypes
+    | ActionAppTypes
 
 let reducers = combineReducers({
     profilePage: profileReducer,
     dialogsPage: dialogsReducer,
     sidebar: sidebarReducer,
     usersPage: usersReducer,
-    auth: authReducer
+    auth: authReducer,
+    app: appReducer
 })
+
+export type AppRootStateType = ReturnType<typeof reducers>
 
 const store = legacy_createStore(reducers, applyMiddleware(thunkMiddleware));
 export const useAppSelector: TypedUseSelectorHook<AppRootStateType> = useSelector
 
 export type AppThunkDispatch = ThunkDispatch<AppRootStateType, any, AnyAction>
 export const useAppDispatch = () => useDispatch<AppThunkDispatch>();
+
+export type AppDispatch = ThunkDispatch<AppRootStateType, unknown, AnyAction>;
 export default store

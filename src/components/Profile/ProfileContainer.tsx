@@ -1,8 +1,8 @@
 import React, {useEffect} from "react";
-import {connect} from "react-redux";
+import {connect, useSelector} from "react-redux";
 import {useLocation, useNavigate, useParams} from "react-router-dom";
 import Profile from "./Profile";
-import {StateType} from "../../redux/redux-store";
+import {AppRootStateType, StateType} from "../../redux/redux-store";
 import {getProfileThunkCreator, getStatus, updateStatus} from "../../redux/profile-reducer";
 import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 import {compose} from "redux";
@@ -12,20 +12,26 @@ type PathParamsType = {
 };
 
 type ProfileContainerProps = {
-    getProfileThunkCreator: (userId: string) => void
-    getStatus: (userId: string) => void
-    updateStatus:(status:string)=>void
-    status:string
+    getProfileThunkCreator: (userId: string | undefined) => void
+    getStatus: (userId: string | undefined) => void
+    updateStatus: (status: string) => void
+    status: string
     profile: any;
+    isAuth: boolean
+
 };
 
 function ProfileContainer(props: ProfileContainerProps) {
     const params = useParams<PathParamsType>();
 
-    useEffect(() => {
-        const userId = params.userId || "2";
-        props.getProfileThunkCreator(userId)
+    const authorizedUserId = useSelector((state: AppRootStateType) => state.auth.userId)
 
+    useEffect(() => {
+        let userId = params.userId;
+        if (!userId) {
+            userId = '2'
+        }
+        props.getProfileThunkCreator(userId)
         props.getStatus(userId)
 
     }, []);
@@ -42,12 +48,14 @@ function ProfileContainer(props: ProfileContainerProps) {
 
 const mapStateToProps = (state: StateType) => ({
     profile: state.profilePage.profile,
-    status:state.profilePage.status
+    status: state.profilePage.status,
+    // authorizedUserId: state.auth.userId,
+    isAuth: state.auth.isAuth
 });
 
 
 export default compose<React.ComponentType>(
-    connect(mapStateToProps, {getProfileThunkCreator,getStatus,updateStatus}),
+    connect(mapStateToProps, {getProfileThunkCreator, getStatus, updateStatus}),
     withAuthRedirect
 )(ProfileContainer)
 ;
