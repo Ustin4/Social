@@ -79,10 +79,7 @@ const usersReducer = (state = initialState, action: ActionTypes) => {
                     : state.followingInProgress.filter(id => id != action.userId)
             }
         }
-        case "SET_CURRENT_PAGE_NUMBER_FOR_PAGINATION":
-            return {
-                ...state, currentPage: action.currentPageNumber
-            }
+
         default:
             return state
     }
@@ -98,7 +95,6 @@ export type ActionUsersTypes =
     | ReturnType<typeof setTotalUsersCount>
     | ReturnType<typeof toggleIsFetching>
     | ReturnType<typeof toggleFollowingProgress>
-    | ReturnType<typeof setCurrentPageNumberForPagination>
 
 export const followSuccess = (userId: number) => ({type: 'FOLLOW', userId} as const);
 
@@ -113,22 +109,18 @@ export const toggleIsFetching = (isFetching: boolean) => ({type: 'TOGGLE_IS_FETC
 
 export const toggleFollowingProgress = (followingInProgress: boolean, userId: number) =>
     ({type: 'TOGGLE_IS_FOLLOWING_PROGRESS', followingInProgress, userId} as const)
-export const setCurrentPageNumberForPagination = (currentPageNumber: number) => ({
-    type: 'SET_CURRENT_PAGE_NUMBER_FOR_PAGINATION',
-    currentPageNumber
-} as const)
 
 
-export const getUsersThunkCreator = (currentPage: number, pageSize: number) => {
+export const getUsersThunkCreator = (page: number, pageSize: number) => {
     return (dispatch: Dispatch) => {
         dispatch(toggleIsFetching(true))
 
-        userAPI.getUsers(currentPage, pageSize)
+        userAPI.getUsers(page, pageSize)
             .then(data => {
                 dispatch(toggleIsFetching(false))
                 dispatch(setUsers(data.items))
                 dispatch(setTotalUsersCount(data.totalCount))
-                dispatch(setCurrentPageNumberForPagination(currentPage))
+                dispatch(setCurrentPage(page))
             })
     }
 }
