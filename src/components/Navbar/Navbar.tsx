@@ -1,6 +1,5 @@
 import React from "react";
-import s from './Navbar.module.css'
-
+import s from './Navbar.module.scss'
 import {NavLink} from "react-router-dom";
 import FriendContainer from "../Friends/FriendContainer";
 import ButtonAppBar from "../../utils/AppBar";
@@ -11,7 +10,7 @@ type PropsType = {
 
 const Navbar: React.FC<any> = ({sidebar}) => {
     return (
-        <nav className={s.nav}>
+        <nav className={s.navbar}>
             <div>
                 <NavLink
                     to="/profile"

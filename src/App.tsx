@@ -12,13 +12,10 @@ import {ErrorSnackbar} from "./components/ErrorSnackbar/ErrorSnackbar";
 import {connect, useSelector} from "react-redux";
 import {compose} from "redux";
 import {initializeApp} from "./redux/app-reducer";
-import {AppRootStateType, StateType, useAppDispatch} from "./redux/redux-store";
-import Preloader from "./components/common/Preloader/Preloader";
+import {AppRootStateType, useAppDispatch} from "./redux/redux-store";
 import {CircularProgress} from "@mui/material";
 
-
-
-const App: React.FC = ({ }) => {
+const App: React.FC = ({}) => {
     const isInitialized = useSelector((state: AppRootStateType) => state.app.isInitialized)
     const dispatch = useAppDispatch();
 
@@ -28,31 +25,28 @@ const App: React.FC = ({ }) => {
 
     if (!isInitialized) {
         return (
-            <div style={{ position: "fixed", top: "30%", textAlign: "center", width: "100%" }}>
-                <CircularProgress />
+            <div style={{position: "fixed", top: "30%", textAlign: "center", width: "100%"}}>
+                <CircularProgress/>
             </div>
         );
     }
-
-
-
     return (
         <div className="app-wrapper">
             <ErrorSnackbar/>
             <HeaderContainer/>
-            <Navbar/>
-            <div className="app-booker-content">
-                <Routes>
-                    <Route path="dialogs/*" element={<DialogsContainer/>}/>
-                    <Route path="profile/:userId?" element={<ProfileContainer/>}/>
-                    <Route path="news/*" element={<News/>}/>
-                    <Route path="users/*" element={<UsersContainer/>}/>
-                    <Route path="login/*" element={<Login/>}/>
-                </Routes>
+            <div className='app-container'>
+                <Navbar/>
+                <div className="app-content">
+                    <Routes>
+                        <Route path="dialogs/*" element={<DialogsContainer/>}/>
+                        <Route path="profile/:userId?" element={<ProfileContainer/>}/>
+                        <Route path="news/*" element={<News/>}/>
+                        <Route path="users/*" element={<UsersContainer/>}/>
+                        <Route path="login/*" element={<Login/>}/>
+                    </Routes>
+                </div>
             </div>
         </div>
     );
 };
-
-
 export default compose(connect(null, {initializeApp})(App));

@@ -1,0 +1,42 @@
+//.nav {
+//    grid-area: n;
+//    background-color:darkslategray;
+//    padding: 20px;
+//}
+//
+//.item  {
+//    color: darkgray;
+//text-decoration: none;
+//}
+//
+//.active {
+//    color: wheat;
+//}
+//
+//.friends{
+//    padding: 50px 1px;
+//    color: red;
+//    text-decoration: none;
+//}
+
+.navbar {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #fff;
+    border-radius: 15px;
+    box-shadow: 0 0 15px 0 rgba(34, 60, 80, 0.1);
+    a {
+        text-decoration: none;
+        color: gray;
+        font-weight: 600;
+        &:hover {
+            color: #2254f5
+        }
+        &.active {
+
+        }
+    }
+
+}
