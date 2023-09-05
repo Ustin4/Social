@@ -1,5 +1,5 @@
 import React from "react";
-import s from './ProfileInfo.module.css'
+import s from './ProfileInfo.module.scss'
 import {ProfilePageType} from "../../../redux/redux-store";
 import Preloader from "../../common/Preloader/Preloader";
 import ProfileStatus from "./ProfileStatus";
@@ -18,31 +18,21 @@ const ProfileInfo = (props: ProfileInfoPropsType) => {
     }
 
     return (
-        <div>
+        <div className={s.profile}>
             {/*<div>
                 <img
                     src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRJzMNWNPsA8KiUFY_YiEC7rub3JEDOCUXXHwJ40dp7&s"/>
             </div>*/}
-            <div className={s.descriptionBlock} >
+            <div className={s.profileHeader} >
                 <img src={props.profile.photos.large ?? ''} alt="photo"/>
              <ProfileStatusWithHooks status={props.status}
                             updateStatus={props.updateStatus}
              />
 
-                <div>
-                    {Object.keys(props.profile.contacts).map(key => {
-                        return (
-                            <div key={key} className={s.color}>
-                                <strong>{key}: </strong>
-                                {props.profile.contacts[key] ? (
-                                    <a href={props.profile.contacts[key]}>
-                                        {props.profile.contacts[key]}
-                                    </a>) : ('not specified')}
-                            </div>
-                        );
-                    })}
+                <div className={s.info}>
+                    ava+description
                 </div>
-                ava+description
+
             </div>
 
         </div>

@@ -10,9 +10,11 @@ import appReducer, {ActionAppTypes} from "./app-reducer";
 
 
 export type PostType = {
-    id: number;
+    id: string;
     message: string;
     likesCount: number;
+    name:string
+    date:string
 }
 
 export type DialogType = {

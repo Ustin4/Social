@@ -1,20 +1,46 @@
-.app-wrapper {
-    background-color: darkslategrey;
-    margin: 0 auto;
+body {
+    margin: 0;
+    font-family: 'Roboto', sans-serif;
+    font-size: 14px;
+    line-height: 1.6;
+    background-color: #F4F2F2;
+    color: #8c8b8b;
+}
+
+
+*,
+*:before,
+*:after {
+    box-sizing: border-box;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    margin: 0;
+}
+
+p {
+    margin: 0 0 10px;
+}
+
+.app-container {
     display: grid;
-    width: 1200px;
     grid-template-areas:
-    "h h"
-    "n c";
-
-    grid-template-rows: 60px 1fr;
-    grid-template-columns: 2fr 10fr;
-    /*grid-gap: 10px;*/
+    "nav content contacts";
+    grid-template-rows: auto 1fr;
+    grid-template-columns: 1fr 2fr 1fr;
+    grid-gap: 15px;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 15px;
 }
 
-.app-wrapper-content {
-    grid-area: c;
-    background-color: aqua;
-
+.app-content {
+    display: grid;
+    grid-area: content;
 }
-

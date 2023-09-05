@@ -17,8 +17,7 @@ import Preloader from "./components/common/Preloader/Preloader";
 import {CircularProgress} from "@mui/material";
 
 
-
-const App: React.FC = ({ }) => {
+const App: React.FC = ({}) => {
     const isInitialized = useSelector((state: AppRootStateType) => state.app.isInitialized)
     const dispatch = useAppDispatch();
 
@@ -28,20 +27,21 @@ const App: React.FC = ({ }) => {
 
     if (!isInitialized) {
         return (
-            <div style={{ position: "fixed", top: "30%", textAlign: "center", width: "100%" }}>
-                <CircularProgress />
+            <div style={{position: "fixed", top: "30%", textAlign: "center", width: "100%"}}>
+                <CircularProgress/>
             </div>
         );
     }
-
 
 
     return (
         <div className="app-wrapper">
             <ErrorSnackbar/>
             <HeaderContainer/>
-            <Navbar/>
-            <div className="app-booker-content">
+
+            <div className='app-container'>
+                <Navbar/>
+            <div className="app-content">
                 <Routes>
                     <Route path="dialogs/*" element={<DialogsContainer/>}/>
                     <Route path="profile/:userId?" element={<ProfileContainer/>}/>
@@ -49,6 +49,7 @@ const App: React.FC = ({ }) => {
                     <Route path="users/*" element={<UsersContainer/>}/>
                     <Route path="login/*" element={<Login/>}/>
                 </Routes>
+            </div>
             </div>
         </div>
     );

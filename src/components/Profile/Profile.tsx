@@ -2,6 +2,7 @@ import React from "react";
 import ProfileInfo from "./ProfileInfo/ProfileInfo";
 import MyPostsContainer from "./MyPosts/MyPostsContainer";
 import {ProfilePageType} from "../../redux/redux-store";
+import s from './Profile.module.css'
 
 type ProfilePropsType = {
     profile: ProfilePageType
@@ -15,7 +16,7 @@ const Profile: React.FC<ProfilePropsType> = ({
                                                  status
                                              }) => {
     return (
-        <div>
+        <div className={s.wall}>
             <ProfileInfo profile={profile}
                          status={status}
                          updateStatus={updateStatus}

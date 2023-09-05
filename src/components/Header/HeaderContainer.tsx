@@ -13,11 +13,12 @@ type HeaderContainerProps = {
 class HeaderContainer extends React.Component<HeaderContainerProps, HeaderContainerProps> {
 
     render() {
-        return <Header {...this.props}/>
+        return <Header  logoutTC={logoutTC} {...this.props}/>
     }
 }
 const mapStateToProps = (state:StateType) => ({
     isAuth:state.auth.isAuth,
     login:state.auth.login
+
 })
 export default connect(mapStateToProps, {logoutTC})(HeaderContainer);

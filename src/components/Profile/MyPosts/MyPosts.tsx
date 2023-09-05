@@ -22,9 +22,7 @@ const MyPosts: React.FC<PropsType> = ({
         initialValues: {
             send: '',
         },
-        validate: (values) => {
-            return validateFromMyPosts(values)
-        },
+
 
         onSubmit: (values) => {
             addPost(values.send)
@@ -32,15 +30,15 @@ const MyPosts: React.FC<PropsType> = ({
         }
     })
     let postsElements = posts.map((p) => (
-        <Post key={p.id} messages={p.message} likesCount={p.likesCount}/>
+        <Post key={p.id} messages={p.message} likesCount={p.likesCount} name={p.name}  date={p.date}/>
     ));
     return (
-        <div className={s['postsBlock']}>
+        <div className={s.addPost}>
             <h3>My posts</h3>
             <form onSubmit={formik.handleSubmit}>
                 <div>
-                    <div>
-                        <TextField
+                    <div className={s.item}>
+                        <TextField className={s.textarea}
                             fullWidth
                             label="Enter your message"
                             id="fullWidth"

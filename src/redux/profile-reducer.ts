@@ -2,24 +2,25 @@ import {ActionTypes, PostType, ProfilePageType} from "./redux-store";
 import {Dispatch} from "redux";
 import {profileAPI, userAPI} from "../api/api";
 import {AxiosResponse} from "axios";
+import {v1} from 'uuid';
 
 
-let initialState = {
+let initialState: ProfileDomainType = {
     posts: [
-        {id: 1, message: 'hi how are you?', likesCount: 12},
-        {id: 2, message: 'hi how', likesCount: 11},
+        {id: v1(), name: 'Ustin', message: 'hi how are you?', date: '18:00', likesCount: 12},
+        {id: v1(), name: 'Veronika', message: 'hi how', date: '20:00', likesCount: 11},
     ],
     profile: null,
     status: ''
 }
 
-const profileReducer = (state = initialState, action: ActionTypes) => {
+const profileReducer = (state = initialState, action: ActionTypes): ProfileDomainType => {
     switch (action.type) {
         case "ADD-POST": {
             let newPost = action.text
-            return {
+            return <ProfileDomainType>{
                 ...state,
-                posts: [...state.posts, {id: 3, message: newPost,likesCount: 1}],
+                posts: [...state.posts, {id: 3,date:'Пишу фигню доделать', name: 'Kavabanga', message: newPost, likesCount: 1}],
             }
         }
         case "SET_USER_PROFILE": {
@@ -45,7 +46,7 @@ export type ActionPostTypes =
     | ReturnType<typeof setStatus>
 
 
-export const addPostActionCreator = (text: string|undefined) => ({type: 'ADD-POST', text} as const);
+export const addPostActionCreator = (text: string | undefined) => ({type: 'ADD-POST', text} as const);
 
 
 export const setUserProfile = (profile: ProfilePageType) =>
@@ -74,4 +75,13 @@ export const getProfileThunkCreator = (userId: string) => (dispatch: Dispatch) =
         });
 
 }
+
+export type ProfileDomainType = {
+    profile: ProfilePageType | null
+    posts: Array<PostType>
+    status: string
+
+};
+
+
 export default profileReducer
