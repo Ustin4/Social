@@ -11,7 +11,7 @@ type PropsType = {
 const Navbar: React.FC<any> = ({sidebar}) => {
     return (
         <nav className={s.navbar}>
-            <div>
+            <div className={s.navItem}>
                 <NavLink
                     to="/profile"
                     className={(navData) =>
@@ -20,7 +20,7 @@ const Navbar: React.FC<any> = ({sidebar}) => {
                     Profile
                 </NavLink>
             </div>
-            <div>
+            <div className={s.navItem}>
                 <NavLink
                     to="/dialogs"
                     className={(navData) =>
@@ -29,7 +29,7 @@ const Navbar: React.FC<any> = ({sidebar}) => {
                     Messages
                 </NavLink>
             </div>
-            <div>
+            <div className={s.navItem}>
                 <NavLink
                     to="/Users"
                     className={(navData) =>
@@ -38,7 +38,7 @@ const Navbar: React.FC<any> = ({sidebar}) => {
                     Users
                 </NavLink>
             </div>
-            <div>
+            <div className={s.navItem}>
                 <NavLink
                     to="/news"
                     className={(navData) =>
@@ -47,19 +47,16 @@ const Navbar: React.FC<any> = ({sidebar}) => {
                     News
                 </NavLink>
             </div>
-            <div className={`${s.item}`}>
+            <div className={s.navItem}>
                 <a>Music</a>
             </div>
-            <div className={`${s.item}`}>
+            <div className={s.navItem}>
                 <a>Settings</a>
             </div>
             <FriendContainer/>
         </nav>
     );
 };
-
-
-
 
 
 export default Navbar;

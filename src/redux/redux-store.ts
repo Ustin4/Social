@@ -32,8 +32,20 @@ export type FriendType = {
     name: string;
 }
 
+type Contacts = {
+    facebook: string  | undefined;
+    website: string  | undefined;
+    vk: string | undefined;
+    twitter: string  | undefined;
+    instagram: string  | undefined;
+    youtube: string  | undefined;
+    github: string  | undefined;
+    mainLink: string  | undefined;
+    [key: string]: string  | undefined;
+};
+
 export type ProfilePageType = {
-    contacts: any;
+    contacts: Contacts;
     photos: {
         small: string | null;
         large: string | null;

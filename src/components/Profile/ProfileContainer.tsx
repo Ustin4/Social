@@ -11,6 +11,8 @@ type PathParamsType = {
     userId: string;
 };
 
+
+
 type ProfileContainerProps = {
     getProfileThunkCreator: (userId: string | undefined) => void
     getStatus: (userId: string | undefined) => void
