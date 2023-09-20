@@ -26,7 +26,9 @@
     "redux": "^4.2.1",
     "redux-thunk": "^2.4.2",
     "reselect": "^4.1.8",
+    "sass": "^1.66.1",
     "typescript": "^4.4.2",
+    "uuid": "^9.0.0",
     "web-vitals": "^2.1.0"
   },
   "scripts": {
@@ -56,6 +58,7 @@
     ]
   },
   "devDependencies": {
+    "@types/uuid": "^9.0.3",
     "css-loader": "^6.8.1",
     "style-loader": "^3.3.3"
   }

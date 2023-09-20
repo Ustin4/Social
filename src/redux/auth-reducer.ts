@@ -2,6 +2,7 @@ import {authAPI} from "../api/api";
 import {Dispatch} from "redux";
 import {handleServerAppError} from "../utils/Error/handleServerAppError";
 import {handleServerNetworkError} from "../utils/Error/handleServerNetworkError";
+import {rejects} from "assert";
 
 
 export type LoginParamsType = {
@@ -94,11 +95,10 @@ export const logoutTC = () => (dispatch: Dispatch<ActionAuthTypes>) => {
 }
 
 export const loginTC = (data: LoginParamsType) => (dispatch: Dispatch<ActionAuthTypes>) => {
-
     authAPI.authLogin(data)
         .then(res => {
             if (res.data.resultCode === 0) {
-                dispatch(setIsLoggedInAC(true))
+                dispatch(setIsLoggedInAC(true));
             } else {
                 handleServerAppError(res.data, dispatch);
             }
@@ -106,5 +106,5 @@ export const loginTC = (data: LoginParamsType) => (dispatch: Dispatch<ActionAuth
         .catch((e) => {
             handleServerNetworkError(e, dispatch);
         })
-}
+};
 export default authReducer

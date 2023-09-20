@@ -8,7 +8,7 @@ import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 import {compose} from "redux";
 
 type PathParamsType = {
-    userId: string;
+    userId: string
 };
 
 
@@ -31,7 +31,7 @@ function ProfileContainer(props: ProfileContainerProps) {
     useEffect(() => {
         let userId = params.userId;
         if (!userId) {
-            userId = '2'
+            userId = authorizedUserId
         }
         props.getProfileThunkCreator(userId)
         props.getStatus(userId)
