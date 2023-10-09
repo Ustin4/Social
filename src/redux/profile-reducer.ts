@@ -54,7 +54,7 @@ export const setUserProfile = (profile: ProfilePageType) =>
 export const setStatus = (status: string) =>
     ({type: "SET_STATUS", status} as const);
 
-export const getStatus = (userId: string) => (dispatch: Dispatch) => {
+export const getStatus = (userId: number) => (dispatch: Dispatch) => {
     profileAPI.getStatus(userId)
         .then((response: AxiosResponse) => {
             dispatch(setStatus(response.data))
@@ -68,10 +68,12 @@ export const updateStatus = (status: string) => (dispatch: Dispatch) => {
             }
         })
 }
-export const getProfileThunkCreator = (userId: string) => (dispatch: Dispatch) => {
+export const getProfileThunkCreator = (userId: number) => (dispatch: Dispatch) => {
+
     userAPI.getProfile(userId)
         .then((response: AxiosResponse) => {
             dispatch(setUserProfile(response.data))
+
         });
 
 }

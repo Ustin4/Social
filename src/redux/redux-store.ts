@@ -1,7 +1,7 @@
 import {AnyAction, applyMiddleware, combineReducers, legacy_createStore} from "redux";
 import dialogsReducer, {ActionMessagesTypes} from "./dialogs-reducer";
 import profileReducer, {ActionPostTypes} from "./profile-reducer";
-import sidebarReducer from "./sidebar-reducer";
+import sidebarReducer, {ActionSidebar} from "./sidebar-reducer";
 import usersReducer, {ActionUsersTypes} from "./users-reducer";
 import authReducer, {ActionAuthTypes} from "./auth-reducer";
 import thunkMiddleware, {ThunkDispatch} from 'redux-thunk'
@@ -13,8 +13,8 @@ export type PostType = {
     id: string;
     message: string;
     likesCount: number;
-    name:string
-    date:string
+    name: string
+    date: string
 }
 
 export type DialogType = {
@@ -33,15 +33,15 @@ export type FriendType = {
 }
 
 type Contacts = {
-    facebook: string  | undefined;
-    website: string  | undefined;
+    facebook: string | undefined;
+    website: string | undefined;
     vk: string | undefined;
-    twitter: string  | undefined;
-    instagram: string  | undefined;
-    youtube: string  | undefined;
-    github: string  | undefined;
-    mainLink: string  | undefined;
-    [key: string]: string  | undefined;
+    twitter: string | undefined;
+    instagram: string | undefined;
+    youtube: string | undefined;
+    github: string | undefined;
+    mainLink: string | undefined;
+    [key: string]: string | undefined;
 };
 
 export type ProfilePageType = {
@@ -63,7 +63,7 @@ export type DialogsPageType = {
 }
 
 export type SitebarType = {
-    Friend: Array<FriendType>;
+    friend: Array<FriendType>;
 }
 
 export type StateType = {
@@ -80,6 +80,7 @@ export type ActionTypes = ActionPostTypes
     | ActionUsersTypes
     | ActionAuthTypes
     | ActionAppTypes
+    | ActionSidebar
 
 let reducers = combineReducers({
     profilePage: profileReducer,

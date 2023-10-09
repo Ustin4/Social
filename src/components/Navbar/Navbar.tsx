@@ -1,12 +1,9 @@
 import React from "react";
 import s from './Navbar.module.scss'
 import {NavLink} from "react-router-dom";
-import FriendContainer from "../Friends/FriendContainer";
-import ButtonAppBar from "../../utils/AppBar";
-/*
-type PropsType = {
-    sidebar:SitebarType
-};*/
+import FriendNavContainer from "../Friends/FriendNavContainer";
+
+
 
 const Navbar: React.FC<any> = ({sidebar}) => {
     return (
@@ -48,12 +45,22 @@ const Navbar: React.FC<any> = ({sidebar}) => {
                 </NavLink>
             </div>
             <div className={s.navItem}>
+                <NavLink
+                    to="/friends"
+                    className={(navData) =>
+                        navData.isActive ? s.active : `${s.item}`
+                    }>
+                    Friends
+                </NavLink>
+            </div>
+            <div className={s.navItem}>
                 <a>Music</a>
             </div>
             <div className={s.navItem}>
                 <a>Settings</a>
             </div>
-            <FriendContainer/>
+
+            <FriendNavContainer/>
         </nav>
     );
 };

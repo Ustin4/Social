@@ -11,12 +11,9 @@ const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement)
 // @ts-ignore
 root.render(
     <BrowserRouter>
-        <React.StrictMode>
-            <Provider store={store}>
-                <App/>
-            </Provider>
-
-        </React.StrictMode>
+        <Provider store={store}>
+            <App/>
+        </Provider>
     </BrowserRouter>
 );
 

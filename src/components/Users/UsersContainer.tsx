@@ -2,12 +2,12 @@ import React from 'react';
 import {connect} from 'react-redux';
 import {StateType} from '../../redux/redux-store';
 import {
-    followSuccess,
+    follow,
     getUsersThunkCreator,
     InitialStateType,
     setCurrentPage,
     toggleFollowingProgress,
-    unFollowSuccess,
+    unFollow,
     UserType
 } from '../../redux/users-reducer';
 import Users from './Users';
@@ -84,7 +84,7 @@ let mapStateToProps = (state: StateType): InitialStateType => {
 export default compose<React.ComponentType>(
     connect(mapStateToProps,
         {
-            follow: followSuccess, unFollow: unFollowSuccess, setCurrentPage,
+            follow, unFollow, setCurrentPage,
             toggleFollowingProgress, getUsersThunkCreator
         }),
 )(UsersContainer)

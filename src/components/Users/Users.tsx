@@ -38,13 +38,7 @@ let Users = (props: UsersPropsType) => {
             pageSize={props.pageSize}
             totalUsersCount={props.totalUsersCount}
         />
-        {/*{pages.map(p => {*/}
-        {/*    // @ts-ignore*/}
-        {/*    return <span className={props.currentPage === p && s.selectedPage}*/}
-        {/*                 onClick={(e) => {*/}
-        {/*                     props.onPageChanged(p)*/}
-        {/*                 }}> {p} </span>*/}
-        {/*})}*/}
+
         {
             props.users.map(u => <div key={u.id}>
                 <span>
@@ -57,10 +51,7 @@ let Users = (props: UsersPropsType) => {
                            sizes={'large'}
                            sx={{width: 56, height: 56}}
                    />
-                                {/*<img*/}
-                                {/*    className={s.userPhoto}*/}
-                                {/*    src={u.photos.small != null ? u.photos.small : userPhoto}*/}
-                                {/*    alt="photo"/>*/}
+
                                 </NavLink>
                     </div>
                         <div>

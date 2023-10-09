@@ -12,9 +12,9 @@ import {ErrorSnackbar} from "./components/ErrorSnackbar/ErrorSnackbar";
 import {connect, useSelector} from "react-redux";
 import {compose} from "redux";
 import {initializeApp} from "./redux/app-reducer";
-import {AppRootStateType, StateType, useAppDispatch} from "./redux/redux-store";
-import Preloader from "./components/common/Preloader/Preloader";
+import {AppRootStateType, useAppDispatch} from "./redux/redux-store";
 import {CircularProgress} from "@mui/material";
+import FriendsContainer from "./components/Friends/Friends/FriendsContainer";
 
 
 const App: React.FC = ({}) => {
@@ -48,6 +48,7 @@ const App: React.FC = ({}) => {
                     <Route path="news/*" element={<News/>}/>
                     <Route path="users/*" element={<UsersContainer/>}/>
                     <Route path="login/*" element={<Login/>}/>
+                    <Route path="friends/*" element={<FriendsContainer/>}/>
                 </Routes>
             </div>
             </div>

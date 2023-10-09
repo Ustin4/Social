@@ -31,6 +31,7 @@ function ProfileContainer(props: ProfileContainerProps) {
     useEffect(() => {
         let userId = params.userId;
         if (!userId) {
+            // @ts-ignore доделать обязательно !!!!!!!!!!
             userId = authorizedUserId
         }
         props.getProfileThunkCreator(userId)

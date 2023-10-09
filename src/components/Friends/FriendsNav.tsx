@@ -1,13 +1,13 @@
 import React from "react";
-import s from "./Friends.module.css";
+import s from "./Friends/Friends.module.css";
 import {SitebarType} from "../../redux/redux-store";
 
 
 type PropsType = {
-    sidebar: SitebarType;
+    friends:Array<any>
 };
 
-const Friends: React.FC<PropsType> = ({ sidebar }) => {
+const FriendsNav: React.FC<PropsType> = ({ friends }) => {
     return (
         <div>
             <h1>Friends</h1>
@@ -16,12 +16,12 @@ const Friends: React.FC<PropsType> = ({ sidebar }) => {
             <div className={s.circle}> </div>
 
             <div>
-                {sidebar.Friend.map((m) => (
-                    <div key={m.id}>{m.name}</div>
-                ))}
+                {friends.slice(0, 3).map((m) => (
+                        <div key={m.id}>{m.name} </div>
+                    ))}
             </div>
         </div>
     );
 };
 
-export default Friends;
+export default FriendsNav;

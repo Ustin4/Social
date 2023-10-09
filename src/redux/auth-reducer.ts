@@ -99,6 +99,7 @@ export const loginTC = (data: LoginParamsType) => (dispatch: Dispatch<ActionAuth
         .then(res => {
             if (res.data.resultCode === 0) {
                 dispatch(setIsLoggedInAC(true));
+                dispatch(setAuthMe(res.data.data.userId))
             } else {
                 handleServerAppError(res.data, dispatch);
             }

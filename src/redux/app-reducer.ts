@@ -1,5 +1,5 @@
 import {Dispatch} from "redux";
-import {getAuthUserData, setIsLoggedInAC} from "./auth-reducer";
+import {getAuthUserData, setAuthMe, setIsLoggedInAC} from "./auth-reducer";
 import {authAPI} from "../api/api";
 
 
@@ -39,6 +39,8 @@ export const initializeApp = () => (dispatch: Dispatch) => {
     authAPI.authMe().then((res) => {
         if (res.data.resultCode === 0) {
             dispatch(setIsLoggedInAC(true));
+            dispatch(setAuthMe(res.data.data.id))
+
         } else {
         }
 
