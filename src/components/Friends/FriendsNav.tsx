@@ -16,7 +16,7 @@ const FriendsNav: React.FC<PropsType> = ({ friends }) => {
             <div className={s.circle}> </div>
 
             <div>
-                {friends.slice(0, 4).map((m) => (
+                {friends.slice(0, 3).map((m) => (
                         <div key={m.id}>{m.name} </div>
                     ))}
             </div>
