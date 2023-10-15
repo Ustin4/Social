@@ -1,15 +1,17 @@
 import React from "react";
-import s from './../Dialogs.module.css'
+import style from './Message.module.css'
 
 
 type PropsType = {
     message: string;
+    darkMode:boolean
 };
 
-const Message: React.FC<PropsType> = ({message}) => {
+const Message: React.FC<PropsType> = ({message,darkMode}) => {
+
     return (
         <div>
-            <div className={s.dialog}>{message}</div>
+            <div className={`${style.message} ${darkMode ? style.darkMode : ''}`}>{message}</div>
         </div>
     )
 }

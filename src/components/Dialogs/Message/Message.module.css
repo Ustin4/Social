@@ -1,0 +1,21 @@
+:root {
+    --background-color: #fff;
+    --text-color: #111;
+}
+
+.darkMode {
+    --background-color: #444444;
+    --text-color: #fff;
+}
+
+.message {
+    max-width: 200px;
+    max-height: 50px;
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+    border-radius: 15px;
+    margin: 7px;
+    background-color: var(--background-color);
+
+}
