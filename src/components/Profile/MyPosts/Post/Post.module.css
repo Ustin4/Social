@@ -1,25 +1,18 @@
-/*.item {*/
-/*    margin-bottom: 20px;*/
-/*    padding: 25px;*/
-/*    background-color: #FDFDFD;*/
 
-/*}*/
-/*.item img {*/
-/*    border-radius: 25px;*/
-/*    width: 50px;*/
-/*}*/
+.darkMode {
+    --background-color: #444444;
+    --text-color: #fff;
+}
 
-
-/*.image-upload>input {*/
-/*    display: none;*/
-/*}*/
-
-
+.dialogContainer{
+    display: flex;
+}
 .post {
     margin-bottom: 20px;
     padding: 25px;
 
-    background-color: #FDFDFD;
+    background-color: var(--background-color);
+
 }
 
 .info {

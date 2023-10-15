@@ -12,6 +12,7 @@ let initialState: ProfileDomainType = {
     ],
     profile: null,
     status: ''
+
 }
 
 const profileReducer = (state = initialState, action: ActionTypes): ProfileDomainType => {

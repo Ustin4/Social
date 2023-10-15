@@ -1,23 +1,23 @@
 import {addMessagesActionCreator} from "../../redux/dialogs-reducer";
 import Dialogs from "./Dialogs";
 import {connect} from "react-redux";
-import {StateType} from "../../redux/redux-store";
+import {AppRootStateType, StateType} from "../../redux/redux-store";
 import {compose, Dispatch} from "redux";
 import React from "react";
 import {withAuthRedirect} from "../../hoc/withAuthRedirect";
 
 
-let mapStateToProps = (state: StateType) => {
+let mapStateToProps = (state: AppRootStateType) => {
     return {
         dialogsPage: state.dialogsPage,
-
+        darkMode: state.darkMode.darkMode
     }
 }
 
 
 let mapDispatchToProps = (dispatch: Dispatch) => {
     return {
-        onSendMessageClick: (newMessagesText:string) => {
+        onSendMessageClick: (newMessagesText: string) => {
             dispatch(addMessagesActionCreator(newMessagesText));
         }
     }

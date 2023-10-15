@@ -7,16 +7,19 @@ import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import SendIcon from "@mui/icons-material/Send";
 import {validateFromMyPosts} from "../../../utils/validator/validators";
+import style from "../../Dialogs/Dialogitem/DialogsItem.module.css";
 
 
 type PropsType = {
     posts: Array<PostType>;
     addPost: (text: string | undefined) => void
+    darkMode:boolean
 };
 
 const MyPosts: React.FC<PropsType> = ({
                                           posts,
-                                          addPost
+                                          addPost,
+                                          darkMode
                                       }) => {
     const formik = useFormik({
         initialValues: {
@@ -30,10 +33,10 @@ const MyPosts: React.FC<PropsType> = ({
         }
     })
     let postsElements = posts.map((p) => (
-        <Post key={p.id} messages={p.message} likesCount={p.likesCount} name={p.name}  date={p.date}/>
+        <Post darkMode={darkMode} key={p.id} messages={p.message} likesCount={p.likesCount} name={p.name}  date={p.date}/>
     ));
     return (
-        <div className={s.addPost}>
+        <div className={`${s.addPost} ${darkMode ? s.darkMode : ''}`}>
             <h3>My posts</h3>
             <form onSubmit={formik.handleSubmit}>
                 <div>

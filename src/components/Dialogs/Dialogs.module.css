@@ -1,34 +1,52 @@
 .dialogs {
-    display: grid;
-    grid-template-columns: 2fr 10fr;
+    display: flex;
+    flex-direction: column;
+}
+
+.items {
+
 }
 
 .dialog {
-
-}
-
-.messages {
-
+    /*border: 1px solid black;*/
+    max-width: 200px;
+    max-height: 50px;
+    display: flex;
+    justify-content: center;
     padding: 10px;
+    border-radius: 15px;
+    margin: 7px;
+    background-color: white;
 }
+
 
 .message {
+    display: flex;
+    flex-direction: column;
+
 
 }
 
 .dialogsItems {
     padding: 10px;
+    display: flex;
+    justify-content: space-between;
 }
-.dialogsItems .active{
+
+
+.dialogsItems .active {
+
     color: wheat;
 }
 
-.buttonMessages{
+.buttonMessages {
     max-width: 60px;
     max-height: 25px;
 
 }
 
-.messagesTextBox{
-
+.messagesTextBox {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
 }

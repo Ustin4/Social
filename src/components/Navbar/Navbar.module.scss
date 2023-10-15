@@ -1,33 +1,24 @@
-//.nav {
-//    grid-area: n;
-//    background-color:darkslategray;
-//    padding: 20px;
-//}
-//
-//.item  {
-//    color: darkgray;
-//text-decoration: none;
-//}
-//
-//.active {
-//    color: wheat;
-//}
-//
-//.friends{
-//    padding: 50px 1px;
-//    color: red;
-//    text-decoration: none;
-//}
+:root {
+    --background-color: #fff;
+    --text-color: #111;
+}
+
+.darkMode {
+    --background-color: #444444;
+    --text-color: #fff;
+}
 
 .navbar {
+    width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: #fff;
+    background-color: var(--background-color);
     border-radius: 15px;
     box-shadow: 0 0 15px 0 rgba(34, 60, 80, 0.1);
     max-height: 1300px;
+    margin: 15px;
     a {
         text-decoration: none;
         color: gray;

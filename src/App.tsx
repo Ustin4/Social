@@ -12,9 +12,10 @@ import {ErrorSnackbar} from "./components/ErrorSnackbar/ErrorSnackbar";
 import {connect, useSelector} from "react-redux";
 import {compose} from "redux";
 import {initializeApp} from "./redux/app-reducer";
-import {AppRootStateType, useAppDispatch} from "./redux/redux-store";
+import {AppRootStateType, useAppDispatch, useAppSelector} from "./redux/redux-store";
 import {CircularProgress} from "@mui/material";
 import FriendsContainer from "./components/Friends/Friends/FriendsContainer";
+import Settings from "./components/Settings/Settings";
 
 
 const App: React.FC = ({}) => {
@@ -33,24 +34,24 @@ const App: React.FC = ({}) => {
         );
     }
 
-
     return (
         <div className="app-wrapper">
             <ErrorSnackbar/>
             <HeaderContainer/>
 
             <div className='app-container'>
-                <Navbar/>
-            <div className="app-content">
-                <Routes>
-                    <Route path="dialogs/*" element={<DialogsContainer/>}/>
-                    <Route path="profile/:userId?" element={<ProfileContainer/>}/>
-                    <Route path="news/*" element={<News/>}/>
-                    <Route path="users/*" element={<UsersContainer/>}/>
-                    <Route path="login/*" element={<Login/>}/>
-                    <Route path="friends/*" element={<FriendsContainer/>}/>
-                </Routes>
-            </div>
+                <Navbar />
+                <div className="app-content">
+                    <Routes>
+                        <Route path="dialogs/*" element={<DialogsContainer/>}/>
+                        <Route path="profile/:userId?" element={<ProfileContainer/>}/>
+                        <Route path="news/*" element={<News/>}/>
+                        <Route path="users/*" element={<UsersContainer/>}/>
+                        <Route path="login/*" element={<Login/>}/>
+                        <Route path="friends/*" element={<FriendsContainer/>}/>
+                        <Route path="Settings/*" element={<Settings/>}/>
+                    </Routes>
+                </div>
             </div>
         </div>
     );

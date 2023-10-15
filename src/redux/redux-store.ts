@@ -7,6 +7,7 @@ import authReducer, {ActionAuthTypes} from "./auth-reducer";
 import thunkMiddleware, {ThunkDispatch} from 'redux-thunk'
 import {TypedUseSelectorHook, useDispatch, useSelector} from "react-redux";
 import appReducer, {ActionAppTypes} from "./app-reducer";
+import themReducer, {ActionThemTypes} from "./them-reducer";
 
 
 export type PostType = {
@@ -81,6 +82,7 @@ export type ActionTypes = ActionPostTypes
     | ActionAuthTypes
     | ActionAppTypes
     | ActionSidebar
+    | ActionThemTypes
 
 let reducers = combineReducers({
     profilePage: profileReducer,
@@ -88,12 +90,14 @@ let reducers = combineReducers({
     sidebar: sidebarReducer,
     usersPage: usersReducer,
     auth: authReducer,
-    app: appReducer
+    app: appReducer,
+    darkMode: themReducer
 })
 
 export type AppRootStateType = ReturnType<typeof reducers>
 
 const store = legacy_createStore(reducers, applyMiddleware(thunkMiddleware));
+
 export const useAppSelector: TypedUseSelectorHook<AppRootStateType> = useSelector
 
 export type AppThunkDispatch = ThunkDispatch<AppRootStateType, any, AnyAction>

@@ -12,7 +12,6 @@ type PathParamsType = {
 };
 
 
-
 type ProfileContainerProps = {
     getProfileThunkCreator: (userId: string | undefined) => void
     getStatus: (userId: string | undefined) => void
@@ -20,6 +19,7 @@ type ProfileContainerProps = {
     status: string
     profile: any;
     isAuth: boolean
+    darkMode: boolean
 
 };
 
@@ -40,7 +40,8 @@ function ProfileContainer(props: ProfileContainerProps) {
     }, []);
 
     return (
-        <Profile profile={props.profile}
+        <Profile darkMode={props.darkMode}
+                 profile={props.profile}
                  status={props.status}
                  updateStatus={props.updateStatus}
         />
@@ -49,10 +50,10 @@ function ProfileContainer(props: ProfileContainerProps) {
 
 // let AuthRedirectComponent =withAuthRedirect(ProfileContainer)
 
-const mapStateToProps = (state: StateType) => ({
+const mapStateToProps = (state: AppRootStateType) => ({
+    darkMode: state.darkMode.darkMode,
     profile: state.profilePage.profile,
     status: state.profilePage.status,
-    // authorizedUserId: state.auth.userId,
     isAuth: state.auth.isAuth
 });
 

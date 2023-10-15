@@ -1,5 +1,6 @@
 import React from "react";
 import s from './Post.module.css'
+import style from "../../../Dialogs/Dialogitem/DialogsItem.module.css";
 
 
 type PropsType = {
@@ -7,11 +8,12 @@ type PropsType = {
     likesCount: number;
     name:string
     date:string
+    darkMode:boolean
 };
 
-const Post: React.FC<PropsType> = ({ messages, likesCount,name,date }) => {
+const Post: React.FC<PropsType> = ({ messages, likesCount,name,date,darkMode }) => {
     return (
-        <div className={s.post}>
+        <div className={`${s.post} ${darkMode ? s.darkMode : ''}`}>
             <div>
                 <div className={s.info}>
                     <div className={s.avatar}>

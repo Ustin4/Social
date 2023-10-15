@@ -15,7 +15,8 @@ export type LoginParamsType = {
 const initialState = {
     isAuth: false,
     error: null as string | null,
-    userId: '' as unknown | undefined
+    userId: '' as unknown | undefined,
+    login:''
 };
 
 type InitialStateType = typeof initialState

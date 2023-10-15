@@ -2,21 +2,19 @@ import React from "react";
 import s from './Header.module.scss';
 import {NavLink} from "react-router-dom";
 import LoginIcon from '@mui/icons-material/Login';
-import LogoutIcon from '@mui/icons-material/Logout';
 import {useAppSelector} from "../../redux/redux-store";
 
 type HeaderProps = {
     // loading:string
     login: string | null;
     logoutTC: any
+    darkMode:boolean
 }
 
 const Header = (props: HeaderProps) => {
-
     const isAuth = useAppSelector((state) => state.auth.isAuth)
-    console.log(isAuth)
     return (
-        <header className={s.header}>
+        <header className={`${s.header} ${props.darkMode ? s.darkMode : ''}`}>
             <div className={s.container}>
                 <div className={s.title}>
                 </div>

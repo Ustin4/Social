@@ -2,12 +2,18 @@ import React from "react";
 import s from './Navbar.module.scss'
 import {NavLink} from "react-router-dom";
 import FriendNavContainer from "../Friends/FriendNavContainer";
+import {ThemeContext} from "../../utils/Theme/Theme";
+import {useAppSelector} from "../../redux/redux-store";
 
+type Navbar = {
+}
 
+const Navbar: React.FC<Navbar> = ({}) => {
 
-const Navbar: React.FC<any> = ({sidebar}) => {
+    const darkMode = useAppSelector(state => state.darkMode.darkMode)
+
     return (
-        <nav className={s.navbar}>
+        <nav className={`${s.navbar} ${darkMode ? s.darkMode : ''}`}>
             <div className={s.navItem}>
                 <NavLink
                     to="/profile"
@@ -54,13 +60,16 @@ const Navbar: React.FC<any> = ({sidebar}) => {
                 </NavLink>
             </div>
             <div className={s.navItem}>
-                <a>Music</a>
-            </div>
-            <div className={s.navItem}>
-                <a>Settings</a>
+                <NavLink to='/Settings'
+                         className={(navData) =>
+                             navData.isActive ? s.active : `${s.item}`
+                         }>
+                    Settings
+                </NavLink>
             </div>
 
             <FriendNavContainer/>
+
         </nav>
     );
 };

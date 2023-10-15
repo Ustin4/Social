@@ -2,7 +2,6 @@ import React from "react";
 import s from './ProfileInfo.module.scss'
 import {ProfilePageType} from "../../../redux/redux-store";
 import Preloader from "../../common/Preloader/Preloader";
-import ProfileStatus from "./ProfileStatus";
 import ProfileStatusWithHooks from "./ProfileStatusWithHooks";
 
 
@@ -10,6 +9,7 @@ type ProfileInfoPropsType = {
     profile: ProfilePageType
     updateStatus: (status: string) => void
     status: string
+    darkMode:boolean
 }
 
 const ProfileInfo = (props: ProfileInfoPropsType) => {
@@ -19,11 +19,8 @@ const ProfileInfo = (props: ProfileInfoPropsType) => {
 
     return (
         <div className={s.profile}>
-            {/*<div>
-                <img
-                    src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRJzMNWNPsA8KiUFY_YiEC7rub3JEDOCUXXHwJ40dp7&s"/>
-            </div>*/}
-            <div className={s.profileHeader}>
+
+            <div className={`${s.profileHeader} ${props.darkMode ? s.darkMode : ''}`}>
                 <img src={props.profile.photos.large ?? ''} alt="no photo"/>
                 <ProfileStatusWithHooks status={props.status}
                                         updateStatus={props.updateStatus}
@@ -52,5 +49,6 @@ const ProfileInfo = (props: ProfileInfoPropsType) => {
         </div>
     )
 }
+
 
 export default ProfileInfo;

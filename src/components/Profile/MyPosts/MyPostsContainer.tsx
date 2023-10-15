@@ -2,13 +2,13 @@ import {addPostActionCreator} from "../../../redux/profile-reducer";
 import MyPosts from "./MyPosts";
 
 import {connect} from "react-redux";
-import {StateType} from "../../../redux/redux-store";
+import {AppRootStateType, StateType} from "../../../redux/redux-store";
 import {Dispatch} from "redux";
 
-const mapStateToProps = (state: StateType) => {
+const mapStateToProps = (state: AppRootStateType) => {
     return {
         posts: state.profilePage.posts,
-        newPostText: state.profilePage.newPostText
+        darkMode:state.darkMode.darkMode
     }
 }
 
