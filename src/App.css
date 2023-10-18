@@ -1,3 +1,8 @@
+:root {
+    --background-color: #fff;
+    --text-color: #111;
+}
+
 body {
     margin: 0;
     font-family: 'Roboto', sans-serif;

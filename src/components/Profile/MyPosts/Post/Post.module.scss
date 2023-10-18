@@ -1,0 +1,44 @@
+:root {
+  --background-color: #fff;
+  --text-color: #111;
+}
+.darkMode {
+  --background-color: #444444;
+  --text-color: #fff;
+}
+
+
+.post {
+  margin-bottom: 20px;
+  padding: 25px;
+  background-color: var(--background-color);
+
+}
+
+.info {
+  display: flex;
+  margin-bottom: 10px;
+}
+
+.avatar {
+  grid-area: avatar;
+}
+
+.avatar img {
+  border-radius: 25px;
+  width: 50px;
+}
+
+.name {
+  font-size: 15px;
+  font-weight: 500;
+  color: #088dcd;
+
+}
+
+.date {
+  font-size: 12px;
+  font-weight: 400;
+  color: #999999;
+}
+
