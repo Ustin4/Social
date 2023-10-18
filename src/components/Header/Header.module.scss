@@ -1,16 +1,14 @@
-:root {
-    --background-color: #fff;
-    --text-color: #111;
-}
+@import '../../assets/common/styles/sass/variables';
 
-.darkMode {
-    --background-color: #444444;
-    --text-color: #fff;
-}
+//.darkMode {
+//    --background-color: #444444;
+//    --text-color: #fff;
+//}
 
 .header {
     width: 100%;
-    background-color: var(--background-color);
+    color: $textColor;
+    background-color: $Color;
     box-shadow: 0 0 15px 0 rgba(34, 60, 80, 0.1);
     height: 100px;
     display: flex;

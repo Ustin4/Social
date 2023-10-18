@@ -17,5 +17,7 @@
     border-radius: 15px;
     margin: 7px;
     background-color: var(--background-color);
+    color: var(--text-color);
+
 
 }

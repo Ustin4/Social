@@ -1,0 +1,9 @@
+@import '../../assets/common/styles/sass/variables';
+
+
+.switchContainer{
+  display: flex;
+  justify-content:flex-end;
+  padding: 10px;
+  flex-direction: column-reverse;
+}

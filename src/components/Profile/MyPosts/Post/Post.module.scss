@@ -1,18 +1,16 @@
-:root {
-  --background-color: #fff;
-  --text-color: #111;
-}
-.darkMode {
-  --background-color: #444444;
-  --text-color: #fff;
-}
+@import '../../../../assets/common/styles/sass/variables';
+
+//.darkMode {
+//  --background-color: #444444;
+//  --text-color: #fff;
+//}
 
 
 .post {
   margin-bottom: 20px;
   padding: 25px;
-  background-color: var(--background-color);
-
+  background-color: $Color;
+  color: $textColor;
 }
 
 .info {

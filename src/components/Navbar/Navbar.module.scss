@@ -1,30 +1,28 @@
-:root {
-    --background-color: #fff;
-    --text-color: #111;
-}
+@import '../../assets/common/styles/sass/variables';
 
-.darkMode {
-    --background-color: #444444;
-    --text-color: #fff;
-}
+//.darkMode {
+//    --background-color: #444444;
+//    --text-color: #fff;
+//}
 
 .navbar {
+    color: $textColor;
     width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: var(--background-color);
+    background-color:$Color;
     border-radius: 15px;
     box-shadow: 0 0 15px 0 rgba(34, 60, 80, 0.1);
     max-height: 1300px;
     margin: 15px;
     a {
         text-decoration: none;
-        color: gray;
         font-weight: 600;
+        color: $textColor;
         &:hover {
-            color: #2254f5
+            color:#ff83c1
         }
         &.active {
             color: burlywood;

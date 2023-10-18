@@ -1,3 +1,9 @@
+
+.darkMode {
+    --background-color: #444444;
+    --text-color: #fff;
+}
+
 .dialogs {
     display: flex;
     flex-direction: column;

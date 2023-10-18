@@ -1,0 +1,10 @@
+.darkMode {
+  --background-color: #121212;
+  --text-color: #fff;
+  --background-colorApp: black;
+}
+
+$Color: var(--background-color);
+$textColor:var(--text-color);
+$colorApp:var(--background-colorApp)
+

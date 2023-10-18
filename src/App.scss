@@ -1,15 +1,14 @@
-:root {
-    --background-color: #fff;
-    --text-color: #111;
-}
+@import "assets/common/styles/sass/variables";
+
 
 body {
     margin: 0;
     font-family: 'Roboto', sans-serif;
     font-size: 14px;
     line-height: 1.6;
-    background-color: #F4F2F2;
+    background-color: $colorApp;
     color: #8c8b8b;
+
 }
 
 
@@ -39,8 +38,8 @@ p {
     grid-template-rows: auto 1fr;
     grid-template-columns: 1fr 2fr 1fr;
     grid-gap: 15px;
-    width: 100%;
-    max-width: 1200px;
+    height: 100%;
+    //max-width: 12000px;
     margin: 0 auto;
     padding: 0 15px;
 }
@@ -48,4 +47,10 @@ p {
 .app-content {
     display: grid;
     grid-area: content;
+
+}
+
+.darkMode{
+    background-color: $colorApp;
+    color: $textColor;
 }

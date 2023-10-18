@@ -1,27 +1,32 @@
+@import '../../../assets/common/styles/sass/variables';
 
-.darkMode {
-  --background-color: #444444;
-  --text-color: #fff;
-}
+//
+//.darkMode {
+//  --background-color: #444444;
+//  --text-color: #fff;
+//}
 
 .addPost {
   width: 100%;
   padding: 15px 25px;
-  background-color: var(--background-color);
+  background-color: $Color;
   box-shadow: 0 0 15px 0 rgba(34, 60, 80, 0.1);
   border-radius: 15px;
   display: flex;
   flex-direction: column;
   margin: 15px;
+  color: $textColor;
+
 
   .item {
+    color: $textColor;
     border: 2px solid #F4F2F2;
   }
 
   .textarea {
   }
 
-  .posts{
+  .posts {
   }
 
 

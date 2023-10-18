@@ -11,7 +11,6 @@ import {useAppDispatch, useAppSelector} from "../../redux/redux-store";
 import {Navigate} from "react-router-dom";
 import {validateFromLogin} from "../../utils/validator/validators";
 import {Simulate} from "react-dom/test-utils";
-import invalid = Simulate.invalid;
 
 
 export default function LoginForm() {

@@ -23,7 +23,9 @@ const DialogItem: React.FC<PropsType> = ({ id, name,darkMode }) => {
                 sx={{ width: 26, height: 36 }}
             />
             <div className={`${style.dialog} ${darkMode ? style.darkMode : ''}`}>
-                <NavLink to={path}>{name}</NavLink>
+                <NavLink className={(dialogItemData) =>
+                        dialogItemData.isActive ? style.active : `${style.dialogLink}`}
+                         to={path}>{name}</NavLink>
             </div>
         </div>
     );

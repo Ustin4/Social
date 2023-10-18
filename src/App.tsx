@@ -1,4 +1,4 @@
-import './App.css';
+import './App.scss';
 import Navbar from "./components/Navbar/Navbar";
 import {Route, Routes} from "react-router-dom";
 import News from "./components/News/News";
@@ -21,7 +21,7 @@ import Settings from "./components/Settings/Settings";
 const App: React.FC = ({}) => {
     const isInitialized = useSelector((state: AppRootStateType) => state.app.isInitialized)
     const dispatch = useAppDispatch();
-
+const darkMode = useAppSelector(state => state.darkMode.darkMode)
     useEffect(() => {
         dispatch(initializeApp());
     }, []);
@@ -35,12 +35,13 @@ const App: React.FC = ({}) => {
     }
 
     return (
-        <div className="app-wrapper">
+        <div className={`app-wrapper ${darkMode ? 'darkMode' : ''}`}>
+
             <ErrorSnackbar/>
             <HeaderContainer/>
 
             <div className='app-container'>
-                <Navbar />
+                <Navbar/>
                 <div className="app-content">
                     <Routes>
                         <Route path="dialogs/*" element={<DialogsContainer/>}/>

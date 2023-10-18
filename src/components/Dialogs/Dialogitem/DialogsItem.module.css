@@ -1,7 +1,3 @@
-:root {
-    --background-color: #fff;
-    --text-color: #111;
-}
 
 .darkMode {
     --background-color: #444444;
@@ -10,6 +6,7 @@
 
 .dialogContainer{
 display: flex;
+
 }
 .dialog {
     max-width: 200px;
@@ -20,9 +17,19 @@ display: flex;
     border-radius: 15px;
     margin: 7px;
     background-color: var(--background-color);
+
 }
 
-.dialogsItems .active {
+.dialogLink{
+    color: var(--text-color);
+
+}
+.dialogLink:hover {
+    color: #4d00ff;
+}
+
+.active{
+    color: #b6abff;
 }
 
 .userPhoto{
