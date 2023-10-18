@@ -11,8 +11,8 @@ import themReducer, {ActionThemTypes} from "./them-reducer";
 
 
 export type PostType = {
-    id: string;
-    message: string;
+    id: number;
+    message: string | undefined;
     likesCount: number;
     name: string
     date: string

@@ -1,9 +1,9 @@
 import {addPostActionCreator} from "../../../redux/profile-reducer";
-import {MyPostsForm} from "./MyPostsForm";
 
 import {connect} from "react-redux";
-import {AppRootStateType, StateType} from "../../../redux/redux-store";
+import {AppRootStateType} from "../../../redux/redux-store";
 import {Dispatch} from "redux";
+import MyPosts from "./MyPosts";
 
 const mapStateToProps = (state: AppRootStateType) => {
     return {
@@ -20,6 +20,6 @@ const mapDispatchToProps = (dispatch: Dispatch) => {
     }
 }
 
-const SuperPostContainer = connect(mapStateToProps, mapDispatchToProps)(MyPostsForm)
+const SuperPostContainer = connect(mapStateToProps, mapDispatchToProps)(MyPosts)
 
 export default SuperPostContainer;

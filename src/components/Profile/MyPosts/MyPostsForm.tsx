@@ -78,7 +78,7 @@ import * as Yup from 'yup';
 import s from './MyPostsForm.module.scss';
 
 type MyPostsFormType = {
-    addPost: (value: string | undefined) => void
+    addPost: (value: string) => void
 };
 
 type FormType = {

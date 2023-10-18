@@ -7,8 +7,8 @@ import {v1} from 'uuid';
 
 let initialState: ProfileDomainType = {
     posts: [
-        {id: v1(), name: 'Ustin', message: 'hi how are you?', date: '18:00', likesCount: 12},
-        {id: v1(), name: 'Veronika', message: 'hi how', date: '20:00', likesCount: 11},
+        {id: 1, name: 'Ustin', message: 'hi how are you?', date: '18:00', likesCount: 12},
+        {id: 2, name: 'Veronika', message: 'hi how', date: '20:00', likesCount: 11},
     ],
     profile: null,
     status: ''
@@ -19,9 +19,15 @@ const profileReducer = (state = initialState, action: ActionTypes): ProfileDomai
     switch (action.type) {
         case "ADD-POST": {
             let newPost = action.text
-            return <ProfileDomainType>{
+            return {
                 ...state,
-                posts: [...state.posts, {id: 3,date:'Пишу фигню доделать', name: 'Kavabanga', message: newPost, likesCount: 1}],
+                posts: [...state.posts, {
+                    id: 3,
+                    date: 'Пишу фигню доделать',
+                    name: 'Kavabanga',
+                    message: newPost,
+                    likesCount: 1
+                }],
             }
         }
         case "SET_USER_PROFILE": {

@@ -1,13 +1,11 @@
 import React from "react";
 import s from "./MyPosts.module.css";
-import Post from "./Post/Post";
 import {PostType} from "../../../redux/redux-store";
 import {useFormik} from "formik";
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
 import SendIcon from "@mui/icons-material/Send";
-import {validateFromMyPosts} from "../../../utils/validator/validators";
-import style from "../../Dialogs/Dialogitem/DialogsItem.module.css";
+import Post from "./Post/Post";
 
 
 type PropsType = {

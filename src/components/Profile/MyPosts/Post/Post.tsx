@@ -1,10 +1,9 @@
 import React from "react";
-import s from './Post.module.css'
-import style from "../../../Dialogs/Dialogitem/DialogsItem.module.css";
+import s from './MyPost.module.css'
 
 
 type PropsType = {
-    messages: string;
+    messages: string|undefined;
     likesCount: number;
     name:string
     date:string
